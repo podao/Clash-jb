@@ -1,6 +1,8 @@
 // 参考 Verge Rev 示例 Script 配置
 //
 // Clash Verge Rev (Version ≥ 17.2) & Mihomo-Party (Version ≥ 1.5.10)
+//
+// 最后更新时间: 2025-05-01 22:37
 
 // 规则集通用配置
 const ruleProviderCommon = {
@@ -94,14 +96,14 @@ function main(config) {
       ...groupBaseOption,
       "name": "全部",
       "type": "select",
-      "proxies": ["All-Auto"],
+      "proxies": ["自动"],
       "include-all": true,
       "filter": "(?=.*(.))(?!.*((?i)群|邀请|返利|循环|官网|客服|网站|网址|获取|订阅|流量|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|国内|地址|频道|无法|说明|使用|提示|特别|访问|支持|教程|关注|更新|作者|加入|(\b(USE|USED|TOTAL|Traffic|Expire|EMAIL|Panel|Channel|Author)\b|(\d{4}-\d{2}-\d{2}|\d+G)))).*$",
       "icon": "https://gh-proxy.com/https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Airport.png"
     },
     {
       ...groupBaseOption,
-      "name": "All-Auto",
+      "name": "自动",
       "type": "url-test",
       "tolerance": 50,
       "lazy": true,
@@ -151,14 +153,14 @@ function main(config) {
       ...groupBaseOption,
       "name": "香港",
       "type": "select",
-      "proxies": ["HK-Auto", "HK-FallBack", "HK-LoadBalance"],
+      "proxies": ["HK-自动", "HK-故障转移", "HK-负载均衡"],
       "include-all": true,
       "filter": "(?i)🇭🇰|香港|(\b(HK|Hong)\b)",
       "icon": "https://gh-proxy.com/https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Hong_Kong.png"
     },
     {
       ...groupBaseOption,
-      "name": "HK-Auto",
+      "name": "HK-自动",
       "type": "url-test",
       "tolerance": 50,
       "lazy": true,
@@ -169,7 +171,7 @@ function main(config) {
     },
     {
       ...groupBaseOption,
-      "name": "HK-FallBack",
+      "name": "HK-故障转移",
       "type": "fallback",
       "lazy": true,
       "include-all": true,
@@ -179,7 +181,7 @@ function main(config) {
     },
     {
       ...groupBaseOption,
-      "name": "HK-LoadBalance",
+      "name": "HK-负载均衡",
       "type": "load-balance",
       "lazy": true,
       "include-all": true,
@@ -191,14 +193,14 @@ function main(config) {
       ...groupBaseOption,
       "name": "台湾",
       "type": "select",
-      "proxies": ["TW-Auto", "TW-FallBack", "TW-LoadBalance"],
+      "proxies": ["TW-自动", "TW-故障转移", "TW-负载均衡"],
       "include-all": true,
       "filter": "(?i)🇨🇳|🇹🇼|台湾|(\b(TW|Tai|台湾)\b)",
       "icon": "https://gh-proxy.com/https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/China.png"
     },
     {
       ...groupBaseOption,
-      "name": "TW-Auto",
+      "name": "TW-自动",
       "type": "url-test",
       "tolerance": 50,
       "lazy": true,
@@ -209,7 +211,7 @@ function main(config) {
     },
     {
       ...groupBaseOption,
-      "name": "TW-FallBack",
+      "name": "TW-故障转移",
       "type": "fallback",
       "lazy": true,
       "include-all": true,
@@ -219,7 +221,7 @@ function main(config) {
     },
     {
       ...groupBaseOption,
-      "name": "TW-LoadBalance",
+      "name": "TW-负载均衡",
       "type": "load-balance",
       "lazy": true,
       "include-all": true,
@@ -231,14 +233,14 @@ function main(config) {
       ...groupBaseOption,
       "name": "日本",
       "type": "select",
-      "proxies": ["JP-Auto", "JP-FallBack", "JP-LoadBalance"],
+      "proxies": ["JP-自动", "JP-故障转移", "JP-负载均衡"],
       "include-all": true,
       "filter": "(?i)🇯🇵|日本|东京|(\b(JP|日本)\b)",
       "icon": "https://gh-proxy.com/https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/日本.png"
     },
     {
       ...groupBaseOption,
-      "name": "JP-Auto",
+      "name": "JP-自动",
       "type": "url-test",
       "tolerance": 50,
       "lazy": true,
@@ -249,7 +251,7 @@ function main(config) {
     },
     {
       ...groupBaseOption,
-      "name": "JP-FallBack",
+      "name": "JP-故障转移",
       "type": "fallback",
       "lazy": true,
       "include-all": true,
@@ -259,7 +261,7 @@ function main(config) {
     },
     {
       ...groupBaseOption,
-      "name": "JP-LoadBalance",
+      "name": "JP-负载均衡",
       "type": "load-balance",
       "lazy": true,
       "include-all": true,
@@ -271,14 +273,14 @@ function main(config) {
       ...groupBaseOption,
       "name": "新加坡",
       "type": "select",
-      "proxies": ["SG-Auto", "SG-FallBack", "SG-LoadBalance"],
+      "proxies": ["SG-自动", "SG-故障转移", "SG-负载均衡"],
       "include-all": true,
       "filter": "(?i)🇸🇬|新加坡|狮|(\b(SG|新加坡)\b)",
       "icon": "https://gh-proxy.com/https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/新加坡.png"
     },
     {
       ...groupBaseOption,
-      "name": "SG-Auto",
+      "name": "SG-自动",
       "type": "url-test",
       "tolerance": 50,
       "lazy": true,
@@ -289,7 +291,7 @@ function main(config) {
     },
     {
       ...groupBaseOption,
-      "name": "SG-FallBack",
+      "name": "SG-故障转移",
       "type": "fallback",
       "lazy": true,
       "include-all": true,
@@ -299,7 +301,7 @@ function main(config) {
     },
     {
       ...groupBaseOption,
-      "name": "SG-LoadBalance",
+      "name": "SG-负载均衡",
       "type": "load-balance",
       "lazy": true,
       "include-all": true,
@@ -311,14 +313,14 @@ function main(config) {
       ...groupBaseOption,
       "name": "美国",
       "type": "select",
-      "proxies": ["US-Auto", "US-FallBack", "US-LoadBalance"],
+      "proxies": ["US-自动", "US-故障转移", "US-负载均衡"],
       "include-all": true,
       "filter": "(?i)🇺🇸|美国|洛杉矶|圣何塞|(\b(US|United States)\b)",
       "icon": "https://gh-proxy.com/https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/United_States.png"
     },
     {
       ...groupBaseOption,
-      "name": "US-Auto",
+      "name": "US-自动",
       "type": "url-test",
       "tolerance": 50,
       "lazy": true,
@@ -329,7 +331,7 @@ function main(config) {
     },
     {
       ...groupBaseOption,
-      "name": "US-FallBack",
+      "name": "US-故障转移",
       "type": "fallback",
       "lazy": true,
       "include-all": true,
@@ -339,7 +341,7 @@ function main(config) {
     },
     {
       ...groupBaseOption,
-      "name": "US-LoadBalance",
+      "name": "US-负载均衡",
       "type": "load-balance",
       "lazy": true,
       "include-all": true,
