@@ -89,7 +89,7 @@ function main(config) {
       ...groupBaseOption,
       "name": "Proxy",
       "type": "select",
-      "proxies": ["香港", "台湾", "日本", "新加坡", "美国", "全部", "DIRECT"],
+      "proxies": ["香港", "台湾", "日本", "新加坡", "韩国", "美国", "全部", "DIRECT"],
       "icon": "https://gh-proxy.com/https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Rocket.png"
     },
     {
@@ -116,28 +116,28 @@ function main(config) {
       ...groupBaseOption,
       "name": "TikTok",
       "type": "select",
-      "proxies": ["Proxy", "香港", "台湾", "日本", "新加坡", "美国"],
+      "proxies": ["Proxy", "香港", "台湾", "日本", "新加坡", "韩国", "美国"],
       "icon": "https://gh-proxy.com/https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/TikTok.png"
     },
     {
       ...groupBaseOption,
       "name": "YouTube",
       "type": "select",
-      "proxies": ["Proxy", "香港", "台湾", "日本", "新加坡", "美国", "全部"],
+      "proxies": ["Proxy", "香港", "台湾", "日本", "新加坡", "韩国", "美国", "全部"],
       "icon": "https://gh-proxy.com/https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/YouTube.png"
     },
     {
       ...groupBaseOption,
       "name": "NETFLIX",
       "type": "select",
-      "proxies": ["Proxy", "香港", "台湾", "日本", "新加坡", "美国", "全部"],
+      "proxies": ["Proxy", "香港", "台湾", "日本", "新加坡", "韩国", "美国", "全部"],
       "icon": "https://gh-proxy.com/https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Netflix.png"
     },
     {
       ...groupBaseOption,
       "name": "Spotify",
       "type": "select",
-      "proxies": ["Proxy", "香港", "台湾", "日本", "新加坡", "美国", "全部", "DIRECT"],
+      "proxies": ["Proxy", "香港", "台湾", "日本", "新加坡", "韩国", "美国", "全部", "DIRECT"],
       "icon": "https://gh-proxy.com/https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Spotify.png"
     },
     {
@@ -145,7 +145,7 @@ function main(config) {
       "name": "Telegram",
       "type": "select",
       "include-all": true,
-      "proxies": ["Proxy", "香港", "台湾", "日本", "新加坡", "美国", "全部"],
+      "proxies": ["Proxy", "香港", "台湾", "日本", "新加坡", "韩国", "美国", "全部"],
       "icon": "https://gh-proxy.com/https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Telegram_X.png"
     },
     // 地区分组
@@ -307,6 +307,46 @@ function main(config) {
       "include-all": true,
       "hidden": true,
       "filter": "(?i)🇸🇬|新加坡|狮|(\b(SG|新加坡)\b)",
+      "icon": "https://gh-proxy.com/https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/新加坡.png"
+    },
+    {
+      ...groupBaseOption,
+      "name": "韩国",
+      "type": "select",
+      "proxies": ["KR-自动", "KR-故障转移", "KR-负载均衡"],
+      "include-all": true,
+      "filter": "(?i)🇰🇷|韩国|(\b(KR|韩国)\b)",
+      "icon": "https://gh-proxy.com/https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/新加坡.png"
+    },
+    {
+      ...groupBaseOption,
+      "name": "KR-自动",
+      "type": "url-test",
+      "tolerance": 50,
+      "lazy": true,
+      "include-all": true,
+      "hidden": true,
+      "filter": "(?i)🇰🇷|韩国|(\b(KR|韩国)\b)",
+      "icon": "https://gh-proxy.com/https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/新加坡.png"
+    },
+    {
+      ...groupBaseOption,
+      "name": "KR-故障转移",
+      "type": "fallback",
+      "lazy": true,
+      "include-all": true,
+      "hidden": true,
+      "filter": "(?i)🇰🇷|韩国|(\b(KR|韩国)\b)",
+      "icon": "https://gh-proxy.com/https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/新加坡.png"
+    },
+    {
+      ...groupBaseOption,
+      "name": "KR-负载均衡",
+      "type": "load-balance",
+      "lazy": true,
+      "include-all": true,
+      "hidden": true,
+      "filter": "(?i)🇰🇷|韩国|(\b(KR|韩国)\b)",
       "icon": "https://gh-proxy.com/https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/新加坡.png"
     },
     {
