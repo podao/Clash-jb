@@ -85,7 +85,7 @@ function main(config) {
   config["proxy-groups"] = [
     {
       ...groupBaseOption,
-      "name": "Proxy",
+      "name": "代理",
       "type": "select",
       "proxies": [ "全部", "香港", "台湾", "日本", "新加坡", "韩国", "美国","DIRECT"],
       "icon": "https://gh-proxy.com/https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Rocket.png"
@@ -121,21 +121,21 @@ function main(config) {
       ...groupBaseOption,
       "name": "YouTube",
       "type": "select",
-      "proxies": ["Proxy", "香港", "台湾", "日本", "新加坡", "韩国", "美国", "全部"],
+      "proxies": ["代理", "香港", "台湾", "日本", "新加坡", "韩国", "美国", "全部"],
       "icon": "https://gh-proxy.com/https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/YouTube.png"
     },
     {
       ...groupBaseOption,
       "name": "NETFLIX",
       "type": "select",
-      "proxies": ["Proxy", "香港", "台湾", "日本", "新加坡", "韩国", "美国", "全部"],
+      "proxies": ["代理", "香港", "台湾", "日本", "新加坡", "韩国", "美国", "全部"],
       "icon": "https://gh-proxy.com/https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Netflix.png"
     },
     {
       ...groupBaseOption,
       "name": "Spotify",
       "type": "select",
-      "proxies": ["Proxy", "香港", "台湾", "日本", "新加坡", "韩国", "美国", "全部", "DIRECT"],
+      "proxies": ["代理", "香港", "台湾", "日本", "新加坡", "韩国", "美国", "全部", "DIRECT"],
       "icon": "https://gh-proxy.com/https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Spotify.png"
     },
     {
@@ -143,7 +143,7 @@ function main(config) {
       "name": "Telegram",
       "type": "select",
       "include-all": true,
-      "proxies": ["Proxy", "香港", "台湾", "日本", "新加坡", "韩国", "美国", "全部"],
+      "proxies": ["代理", "香港", "台湾", "日本", "新加坡", "韩国", "美国", "全部"],
       "icon": "https://gh-proxy.com/https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Telegram_X.png"
     },
     // 地区分组
@@ -561,8 +561,7 @@ function main(config) {
     "RULE-SET,spotify-domain,Spotify",
     "RULE-SET,wechat-classical,DIRECT",
     "RULE-SET,telegram-domain,Telegram",
-    "RULE-SET,github-domain,Proxy",
-    "RULE-SET,proxy-domain,Proxy",
+    "RULE-SET,proxy-domain,代理",
     "RULE-SET,netflix-ip,NETFLIX",
     "RULE-SET,telegram-ip,Telegram",
     "RULE-SET,cn-domain,DIRECT",
