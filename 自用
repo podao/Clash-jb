@@ -87,7 +87,7 @@ function main(config) {
       ...groupBaseOption,
       "name": "Proxy",
       "type": "select",
-      "proxies": ["香港", "台湾", "日本", "新加坡", "韩国", "美国", "全部", "DIRECT"],
+      "proxies": [ "全部", "香港", "台湾", "日本", "新加坡", "韩国", "美国","DIRECT"],
       "icon": "https://gh-proxy.com/https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Rocket.png"
     },
     {
@@ -114,7 +114,7 @@ function main(config) {
       ...groupBaseOption,
       "name": "TikTok",
       "type": "select",
-      "proxies": ["Proxy", "香港", "台湾", "日本", "新加坡", "韩国", "美国"],
+      "proxies": ["香港", "台湾", "日本", "新加坡", "韩国", "美国", "全部"],
       "icon": "https://gh-proxy.com/https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/TikTok.png"
     },
     {
