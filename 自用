@@ -148,6 +148,13 @@ function main(config) {
       "proxies": ["节点", "香港", "台湾", "日本", "新加坡", "韩国", "美国", "全部"],
       "icon": "https://gh-proxy.com/https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Telegram_X.png"
     },
+    {
+      ...groupBaseOption,
+      "name": "Google",
+      "type": "select",
+      "proxies": ["节点", "香港", "台湾", "日本", "新加坡", "韩国", "美国", "全部"],
+      "icon": "https://gh-proxy.com/https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Google_Search.png"
+    },
     // 地区分组
     {
       ...groupBaseOption,
@@ -429,6 +436,24 @@ function main(config) {
       "format": "mrs",
       "interval": 86400
     },
+    "google-domain": {
+      ...ruleProviderCommon,
+      "behavior": "domain",
+      "url": "https://gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google.mrs",
+      "path": "./rules/google-domain.mrs",
+      "type": "http",
+      "format": "mrs",
+      "interval": 86400
+    },
+    "google-ip": {
+      ...ruleProviderCommon,
+      "behavior": "ipcidr",
+      "url": "https://gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/google.mrs",
+      "path": "./rules/google-ip.mrs",
+      "type": "http",
+      "format": "mrs",
+      "interval": 86400
+    },
     "netflix-domain": {
       ...ruleProviderCommon,
       "behavior": "domain",
@@ -557,6 +582,8 @@ function main(config) {
     "DOMAIN,board.zash.run.place,DIRECT",
     "RULE-SET,private-domain,DIRECT",
     "RULE-SET,youtube-domain,YouTube",
+    "RULE-SET,google-domain,Google",
+    "RULE-SET,google-ip,Google",
     "RULE-SET,netflix-domain,NETFLIX",
     "RULE-SET,tiktok-domain,TikTok",
     "RULE-SET,bahamut-domain,台湾",
