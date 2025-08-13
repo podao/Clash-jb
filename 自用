@@ -142,9 +142,15 @@ function main(config) {
     },
     {
       ...groupBaseOption,
+      "name": "X",
+      "type": "select",
+      "proxies": ["节点", "香港", "台湾", "日本", "新加坡", "韩国", "美国", "全部", "DIRECT"],
+      "icon": "https://gh-proxy.com/https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/X.png"
+    },
+    {
+      ...groupBaseOption,
       "name": "Telegram",
       "type": "select",
-      "include-all": true,
       "proxies": ["节点", "香港", "台湾", "日本", "新加坡", "韩国", "美国", "全部"],
       "icon": "https://gh-proxy.com/https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Telegram_X.png"
     },
@@ -499,6 +505,24 @@ function main(config) {
       "format": "mrs",
       "interval": 86400
     },
+    "twitter-domain": {
+      ...ruleProviderCommon,
+      "behavior": "domain",
+      "url": "https://gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/twitter.mrs",
+      "path": "./rules/twitter-domain.mrs",
+      "type": "http",
+      "format": "mrs",
+      "interval": 86400
+    },
+    "twitter-ip": {
+      ...ruleProviderCommon,
+      "behavior": "ipcidr",
+      "url": "https://gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/twitter.mrs",
+      "path": "./rules/twitter-ip.mrs",
+      "type": "http",
+      "format": "mrs",
+      "interval": 86400
+    },
     "spotify-domain": {
       ...ruleProviderCommon,
       "behavior": "domain",
@@ -584,6 +608,8 @@ function main(config) {
     "RULE-SET,youtube-domain,YouTube",
     "RULE-SET,google-domain,Google",
     "RULE-SET,google-ip,Google",
+    "RULE-SET,twitter-domain,X",
+    "RULE-SET,twitter-ip,X",
     "RULE-SET,netflix-domain,NETFLIX",
     "RULE-SET,tiktok-domain,TikTok",
     "RULE-SET,bahamut-domain,台湾",
