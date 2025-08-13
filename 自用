@@ -89,7 +89,7 @@ function main(config) {
       ...groupBaseOption,
       "name": "节点",
       "type": "select",
-      "proxies": [ "全部", "香港", "台湾", "日本", "新加坡", "韩国", "美国","DIRECT"],
+      "proxies": [ "全部", "香港", "台湾", "日本", "新加坡", "韩国", "美国"],
       "icon": "https://gh-proxy.com/https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Rocket.png"
     },
     {
