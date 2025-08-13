@@ -23,6 +23,17 @@ function main(config) {
   if (proxyCount === 0 && proxyProviderCount === 0) {
     throw new Error("配置文件中未找到任何代理");
   }
+  
+  // 覆盖 dns 配置
+  config["dns"] = {
+    "enable": true,
+    "listen": "0.0.0.0:1053",
+    "enhanced-mode": "fake-ip",
+    "fake-ip-range": "198.18.0.1/16",
+    "fake-ip-filter": ["*.lan", "+.local", "localhost.ptlogin2.qq.com", "+.msftncsi.com"],
+    "default-nameserver": ["223.5.5.5", "119.29.29.29"],
+    "nameserver": ["tls://dns.google:853", "tls://1.1.1.1:853"]
+  };
 
   // 覆盖策略组
   config["proxy-groups"] = [
