@@ -15,7 +15,7 @@ proxy-providers:
   Airport_01:
     <<: *PProviders
     proxy: "🟢 直连"
-    url: "https://ymjc.cfd/api/v1/client/subscribe?token=116f4cf911dcc0732f892c33dcb04e23"
+    url: "https://"
     override:
       additional-prefix: '[一毛]'
       skip-cert-verify: true
@@ -23,7 +23,7 @@ proxy-providers:
   Airport_02:
     <<: *PProviders
     proxy: "🟢 直连"
-    url: "https://artislg.com/api/v1/zaoanyun?ovo=267786fb0b73e06f332eff7bb74b6f1e"
+    url: "https://"
     override:
       additional-prefix: '[早安云]'
       skip-cert-verify: true
@@ -31,7 +31,7 @@ proxy-providers:
   Airport_03:
     <<: *PProviders
     proxy: "🟢 直连"
-    url: "https://fbzoxghg.chaoyue.quest:8443/api/v1/client/93d6007cb52a8a1bdbf6531c5d92e432"
+    url: "https://"
     override:
       additional-prefix: '[超悦]'
       skip-cert-verify: true
