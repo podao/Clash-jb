@@ -14,7 +14,7 @@ const groupBaseOption = {
   "max-failed-times": 3,
   "tolerance": 100,
 //过滤节点
-  //"exclude-filter": '(?i)(JP|Japan|东京|大阪|🇯🇵)',
+  "exclude-filter": '(?i)(IN|India|印度|🇮🇳)',
 };
 
 // 程序入口
