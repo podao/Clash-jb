@@ -13,6 +13,8 @@ const groupBaseOption = {
   "url": "http://www.gstatic.com/generate_204",
   "max-failed-times": 3,
   "tolerance": 100,
+//过滤节点
+  //"exclude-filter": '(?i)(JP|Japan|东京|大阪|🇯🇵)',
 };
 
 // 程序入口
@@ -30,7 +32,7 @@ function main(config) {
     "listen": "0.0.0.0:1053",
     "enhanced-mode": "fake-ip",
     "fake-ip-range": "198.18.0.1/16",
-    "fake-ip-filter": ["*.lan", "+.local", "localhost.ptlogin2.qq.com", "+.msftncsi.com"],
+    "fake-ip-filter": ["*.lan", "+.local", "localhost.ptlogin2.qq.com", "+.msftncsi.com", "time.windows.com"],
     "default-nameserver": ["223.5.5.5", "119.29.29.29"],
     "nameserver": ["tls://dns.google:853", "tls://1.1.1.1:853"]
   };
