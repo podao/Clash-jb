@@ -565,7 +565,6 @@ function main(config) {
     "RULE-SET,twitter-domain,X",
     "RULE-SET,twitter-ip,X",
     "RULE-SET,netflix-domain,NETFLIX",
-    "RULE-SET,tiktok-domain,TikTok",
     "RULE-SET,bahamut-domain,台湾",
     "RULE-SET,spotify-domain,Spotify",
     "RULE-SET,wechat-classical,DIRECT",
