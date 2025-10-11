@@ -270,7 +270,7 @@ function main(config) {
       "type": "select",
       "proxies": ["节点选择", "延迟选优", "故障转移", "全局直连"],
       "include-all": true,
-      "filter": "(?i)IN|India|印度|🇮🇳",
+      "exclude-filter": "(?i)IN|India|印度|🇮🇳",
       "icon": "https://fastly.jsdelivr.net/gh/xiaolin-007/clash@main/icon/tiktok.svg"
     },
     {
