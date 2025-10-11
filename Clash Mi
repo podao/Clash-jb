@@ -19,8 +19,7 @@ proxy-providers:
     override:
       additional-prefix: '[一毛]'
       skip-cert-verify: true
-      udp: true
-    exclude-filter: '(IN|India|印度|🇮🇳)'
+      udp: true    
   Airport_02:
     <<: *PProviders
     proxy: "🟢 直连"
@@ -29,7 +28,6 @@ proxy-providers:
       additional-prefix: '[早安云]'
       skip-cert-verify: true
       udp: true
-    exclude-filter: '(IN|India|印度|🇮🇳)'
 
 ##############################################
 
@@ -176,7 +174,7 @@ proxy-groups:
   - {name: Talkatone, <<: *Proxy_first, icon: "https://pub-8feead0908f649a8b94397f152fb9cba.r2.dev/talkatone.png"}
   - {name: LINE, <<: *Proxy_first, icon: "https://pub-8feead0908f649a8b94397f152fb9cba.r2.dev/line.png"}
   - {name: Signal, <<: *Proxy_first, icon: "https://pub-8feead0908f649a8b94397f152fb9cba.r2.dev/signal.png"}
-  - {name: TikTok, <<: *Proxy_first, icon: "https://pub-8feead0908f649a8b94397f152fb9cba.r2.dev/tiktok.png"}
+  - {name: TikTok, <<: *Proxy_first, exclude-filter: '(IN|India|印度|🇮🇳)', icon: "https://pub-8feead0908f649a8b94397f152fb9cba.r2.dev/tiktok.png"}
   - {name: NETFLIX, <<: *Proxy_first, icon: "https://pub-8feead0908f649a8b94397f152fb9cba.r2.dev/netflix.png"}
   - {name: DisneyPlus, <<: *Proxy_first, icon: "https://pub-8feead0908f649a8b94397f152fb9cba.r2.dev/disney.png"}
   - {name: HBO, <<: *Proxy_first, icon: "https://pub-8feead0908f649a8b94397f152fb9cba.r2.dev/hbo.png"}
