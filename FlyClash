@@ -26,6 +26,7 @@ const dnsConfig = {
     // 本地主机/设备
     "+.lan",
     "+.local",
+    "+chat.openai.com",
     // // Windows网络出现小地球图标
     "+.msftconnecttest.com",
     "+.msftncsi.com",
@@ -181,6 +182,7 @@ const ruleProviders = {
 // 规则
 const rules = [
   // 自定义规则
+  "DOMAIN-SUFFIX,chatgpt.com,AI", 
   "DOMAIN-SUFFIX,googleapis.cn,节点选择", // Google服务
   "DOMAIN-SUFFIX,gstatic.com,节点选择", // Google静态资源
   "DOMAIN-SUFFIX,xn--ngstr-lra8j.com,节点选择", // Google Play下载服务
@@ -190,6 +192,7 @@ const rules = [
   "RULE-SET,applications,全局直连",
   "RULE-SET,private,全局直连",
   "RULE-SET,reject,广告过滤",
+  "RULE-SET,AI,AI",
   "RULE-SET,icloud,微软服务",
   "RULE-SET,apple,苹果服务",
   "RULE-SET,TikTok,TikTok",
@@ -198,7 +201,6 @@ const rules = [
   "RULE-SET,bahamut,动画疯",
   "RULE-SET,Spotify,Spotify",
   "RULE-SET,BilibiliHMT,哔哩哔哩港澳台",
-  "RULE-SET,AI,AI",
   "RULE-SET,google,谷歌服务",
   "RULE-SET,proxy,节点选择",
   "RULE-SET,gfw,节点选择",
@@ -311,6 +313,7 @@ function main(config) {
       "type": "select",
       "include-all": true,
       "proxies": ["节点选择", "延迟选优", "故障转移"],
+      "exclude-filter": "(?i)IN|India|印度|🇮🇳|CN|China|中国大陆|🇨🇳",
       "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/chatgpt.svg"
     },
     {
@@ -403,5 +406,3 @@ function main(config) {
   return config;
 
 }
-
-
