@@ -26,7 +26,6 @@ const dnsConfig = {
     // 本地主机/设备
     "+.lan",
     "+.local",
-    "+chat.openai.com",
     // // Windows网络出现小地球图标
     "+.msftconnecttest.com",
     "+.msftncsi.com",
@@ -182,7 +181,6 @@ const ruleProviders = {
 // 规则
 const rules = [
   // 自定义规则
-  "DOMAIN-SUFFIX,chatgpt.com,AI", 
   "DOMAIN-SUFFIX,googleapis.cn,节点选择", // Google服务
   "DOMAIN-SUFFIX,gstatic.com,节点选择", // Google静态资源
   "DOMAIN-SUFFIX,xn--ngstr-lra8j.com,节点选择", // Google Play下载服务
@@ -255,7 +253,7 @@ function main(config) {
       "interval":120,
       "tolerance": 200,
       "include-all": true,
-      "filter": "^(?!.*(官网|套餐|流量|异常|剩余)).*$",
+      "filter": "^(?!.*(官网|套餐|流量|异常|剩余)).*(?!\[\d+x![××]?\]).*$",
       "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/speed.svg"
     },
     {
@@ -272,7 +270,7 @@ function main(config) {
       "type": "select",
       "proxies": ["节点选择", "延迟选优", "故障转移", "全局直连"],
       "include-all": true,
-      "exclude-filter": "(?i)IN|India|印度|🇮🇳",
+      "filter": "(?i)^(?!.*(IN|India|印度|🇮🇳|CN|China|中国大陆|🇨🇳))",
       "icon": "https://fastly.jsdelivr.net/gh/xiaolin-007/clash@main/icon/tiktok.svg"
     },
     {
@@ -313,7 +311,7 @@ function main(config) {
       "type": "select",
       "include-all": true,
       "proxies": ["节点选择", "延迟选优", "故障转移"],
-      "exclude-filter": "(?i)IN|India|印度|🇮🇳|CN|China|中国大陆|🇨🇳",
+      "filter": "(?i)^(?!.*(IN|India|印度|🇮🇳|CN|China|中国大陆|🇨🇳))",
       "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/chatgpt.svg"
     },
     {
