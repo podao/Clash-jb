@@ -243,7 +243,7 @@ function main(config) {
       "type": "select",
       "proxies": ["延迟选优", "故障转移"],
       "include-all": true,
-      "filter": "^(?!.*(官网|套餐|流量|异常|剩余|\d+\s*[x×]+)).*$",
+      "filter": "^(?!.*(官网|套餐|流量|异常|剩余|\\[?\\d+\\s*[xX×＊*]+[^\\]]*\\]?)).*$",
       "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/adjust.svg"
     },
     {
@@ -253,7 +253,7 @@ function main(config) {
       "interval":120,
       "tolerance": 200,
       "include-all": true,
-      "filter": "^(?!.*(官网|套餐|流量|异常|剩余|\d+\s*[x×]+)).*$",
+      "filter": "^(?!.*(官网|套餐|流量|异常|剩余|\\[?\\d+\\s*[xX×＊*]+[^\\]]*\\]?)).*$",
       "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/speed.svg"
     },
     {
@@ -261,7 +261,7 @@ function main(config) {
       "name": "故障转移",
       "type": "fallback",
       "include-all": true,
-      "filter": "^(?!.*(官网|套餐|流量|异常|剩余|\d+\s*[x×]+)).*$",
+      "filter": "^(?!.*(官网|套餐|流量|异常|剩余|\\[?\\d+\\s*[xX×＊*]+[^\\]]*\\]?)).*$",
       "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/ambulance.svg"
     },
     {
