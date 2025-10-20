@@ -241,9 +241,10 @@ function main(config) {
       ...groupBaseOption,
       "name": "节点选择",
       "type": "select",
-      "proxies": ["延迟选优", "故障转移"],
+      "proxies": ["延迟选优", "香港🗃️", "日本🗃️", "新加坡🗃️", "台湾🗃️", "美国🗃️"],
       "include-all": true,
-      "filter": "^(?!.*(官网|套餐|流量|异常|剩余|\\[?\\d+\\s*[xX×＊*]+[^\\]]*\\]?)).*$",
+      "filter": "^(?!.*(官网|套餐|流量|异常|剩余)).*$",
+      "exclude-filter": "(?i)(\\[?\\d+([xX×＊*]|倍率)[^\\}\\]]*\\]?)", // <-- 新增排除高倍率节点
       "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/adjust.svg"
     },
     {
@@ -253,15 +254,282 @@ function main(config) {
       "interval":120,
       "tolerance": 200,
       "include-all": true,
-      "filter": "^(?!.*(官网|套餐|流量|异常|剩余|\\[?\\d+\\s*[xX×＊*]+[^\\]]*\\]?)).*$",
+      "filter": "^(?!.*(官网|套餐|流量|异常|剩余)).*$",
+      "exclude-filter": "(?i)(\\[?\\d+([xX×＊*]|倍率)[^\\}\\]]*\\]?)", // <-- 新增排除高倍率节点
       "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/speed.svg"
+    },
+    // 地区分组
+    {
+      ...groupBaseOption,
+      "name": "香港🗃️",
+      "type": "select",
+      "proxies": ["HK-自动", "HK-故障转移", "HK-负载均衡"],
+      "exclude-filter": "(?i)(\\[?\\d+([xX×＊*]|倍率)[^\\}\\]]*\\]?)", // <-- 新增排除高倍率节点
+      "include-all": true,
+      "filter": "(?i)🇭🇰|香港|(\b(HK|Hong)\b)",
+      "icon": "https://gh-proxy.com/https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Hong_Kong.png"
+    },
+    {
+      ...groupBaseOption,
+      "name": "HK-自动",
+      "type": "url-test",
+      "tolerance": 50,
+      "lazy": true,
+      "include-all": true,
+      "hidden": true,
+      "filter": "(?i)🇭🇰|香港|(\b(HK|Hong)\b)",
+      "exclude-filter": "(?i)(\\[?\\d+([xX×＊*]|倍率)[^\\}\\]]*\\]?)", // <-- 新增排除高倍率节点
+      "icon": "https://gh-proxy.com/https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Hong_Kong.png"
+    },
+    {
+      ...groupBaseOption,
+      "name": "HK-故障转移",
+      "type": "fallback",
+      "lazy": true,
+      "include-all": true,
+      "hidden": true,
+      "filter": "(?i)🇭🇰|香港|(\b(HK|Hong)\b)",
+      "exclude-filter": "(?i)(\\[?\\d+([xX×＊*]|倍率)[^\\}\\]]*\\]?)", // <-- 新增排除高倍率节点
+      "icon": "https://gh-proxy.com/https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Hong_Kong.png"
+    },
+    {
+      ...groupBaseOption,
+      "name": "HK-负载均衡",
+      "type": "load-balance",
+      "lazy": true,
+      "include-all": true,
+      "hidden": true,
+      "filter": "(?i)🇭🇰|香港|(\b(HK|Hong)\b)",
+      "exclude-filter": "(?i)(\\[?\\d+([xX×＊*]|倍率)[^\\}\\]]*\\]?)", // <-- 新增排除高倍率节点
+      "icon": "https://gh-proxy.com/https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Hong_Kong.png"
+    },
+    {
+      ...groupBaseOption,
+      "name": "台湾🗃️",
+      "type": "select",
+      "proxies": ["TW-自动", "TW-故障转移", "TW-负载均衡"],
+      "exclude-filter": "(?i)(\\[?\\d+([xX×＊*]|倍率)[^\\}\\]]*\\]?)", // <-- 新增排除高倍率节点
+      "include-all": true,
+      "filter": "(?i)🇨🇳|🇹🇼|台湾|(\b(TW|Taiwan|台湾)\b)",
+      "icon": "https://gh-proxy.com/https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Taiwan.png"
+    },
+    {
+      ...groupBaseOption,
+      "name": "TW-自动",
+      "type": "url-test",
+      "tolerance": 50,
+      "lazy": true,
+      "include-all": true,
+      "hidden": true,
+      "filter": "(?i)🇨🇳|🇹🇼|台湾|(\b(TW|Taiwan|台湾)\b)",
+      "exclude-filter": "(?i)(\\[?\\d+([xX×＊*]|倍率)[^\\}\\]]*\\]?)", // <-- 新增排除高倍率节点
+      "icon": "https://gh-proxy.com/https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Taiwan.png"
+    },
+    {
+      ...groupBaseOption,
+      "name": "TW-故障转移",
+      "type": "fallback",
+      "lazy": true,
+      "include-all": true,
+      "hidden": true,
+      "filter": "(?i)🇨🇳|🇹🇼|台湾|(\b(TW|Taiwan|台湾)\b)",
+      "exclude-filter": "(?i)(\\[?\\d+([xX×＊*]|倍率)[^\\}\\]]*\\]?)", // <-- 新增排除高倍率节点
+      "icon": "https://gh-proxy.com/https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Taiwan.png"
+    },
+    {
+      ...groupBaseOption,
+      "name": "TW-负载均衡",
+      "type": "load-balance",
+      "lazy": true,
+      "include-all": true,
+      "hidden": true,
+      "filter": "(?i)🇨🇳|🇹🇼|台湾|(\b(TW|Taiwan|台湾)\b)",
+      "exclude-filter": "(?i)(\\[?\\d+([xX×＊*]|倍率)[^\\}\\]]*\\]?)", // <-- 新增排除高倍率节点
+      "icon": "https://gh-proxy.com/https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Taiwan.png"
+    },
+    {
+      ...groupBaseOption,
+      "name": "日本🗃️",
+      "type": "select",
+      "proxies": ["JP-自动", "JP-故障转移", "JP-负载均衡"],
+      "exclude-filter": "(?i)(\\[?\\d+([xX×＊*]|倍率)[^\\}\\]]*\\]?)", // <-- 新增排除高倍率节点
+      "include-all": true,
+      "filter": "(?i)🇯🇵|日本|东京|(\b(JP|日本)\b)",
+      "icon": "https://gh-proxy.com/https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Japan.png"
+    },
+    {
+      ...groupBaseOption,
+      "name": "JP-自动",
+      "type": "url-test",
+      "tolerance": 50,
+      "lazy": true,
+      "include-all": true,
+      "hidden": true,
+      "filter": "(?i)🇯🇵|日本|东京|(\b(JP|日本)\b)",
+      "exclude-filter": "(?i)(\\[?\\d+([xX×＊*]|倍率)[^\\}\\]]*\\]?)", // <-- 新增排除高倍率节点
+      "icon": "https://gh-proxy.com/https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Japan.png"
+    },
+    {
+      ...groupBaseOption,
+      "name": "JP-故障转移",
+      "type": "fallback",
+      "lazy": true,
+      "include-all": true,
+      "hidden": true,
+      "filter": "(?i)🇯🇵|日本|东京|(\b(JP|日本)\b)",
+      "exclude-filter": "(?i)(\\[?\\d+([xX×＊*]|倍率)[^\\}\\]]*\\]?)", // <-- 新增排除高倍率节点
+      "icon": "https://gh-proxy.com/https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Japan.png"
+    },
+    {
+      ...groupBaseOption,
+      "name": "JP-负载均衡",
+      "type": "load-balance",
+      "lazy": true,
+      "include-all": true,
+      "hidden": true,
+      "filter": "(?i)🇯🇵|日本|东京|(\b(JP|日本)\b)",
+      "exclude-filter": "(?i)(\\[?\\d+([xX×＊*]|倍率)[^\\}\\]]*\\]?)", // <-- 新增排除高倍率节点
+      "icon": "https://gh-proxy.com/https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Japan.png"
+    },
+    {
+      ...groupBaseOption,
+      "name": "新加坡🗃️",
+      "type": "select",
+      "proxies": ["SG-自动", "SG-故障转移", "SG-负载均衡"],
+      "exclude-filter": "(?i)(\\[?\\d+([xX×＊*]|倍率)[^\\}\\]]*\\]?)", // <-- 新增排除高倍率节点
+      "include-all": true,
+      "filter": "(?i)🇸🇬|新加坡|狮|(\b(SG|新加坡)\b)",
+      "icon": "https://gh-proxy.com/https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Singapore.png"
+    },
+    {
+      ...groupBaseOption,
+      "name": "SG-自动",
+      "type": "url-test",
+      "tolerance": 50,
+      "lazy": true,
+      "include-all": true,
+      "hidden": true,
+      "filter": "(?i)🇸🇬|新加坡|狮|(\b(SG|新加坡)\b)",
+      "exclude-filter": "(?i)(\\[?\\d+([xX×＊*]|倍率)[^\\}\\]]*\\]?)", // <-- 新增排除高倍率节点
+      "icon": "https://gh-proxy.com/https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Singapore.png"
+    },
+    {
+      ...groupBaseOption,
+      "name": "SG-故障转移",
+      "type": "fallback",
+      "lazy": true,
+      "include-all": true,
+      "hidden": true,
+      "filter": "(?i)🇸🇬|新加坡|狮|(\b(SG|新加坡)\b)",
+      "exclude-filter": "(?i)(\\[?\\d+([xX×＊*]|倍率)[^\\}\\]]*\\]?)", // <-- 新增排除高倍率节点
+      "icon": "https://gh-proxy.com/https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Singapore.png"
+    },
+    {
+      ...groupBaseOption,
+      "name": "SG-负载均衡",
+      "type": "load-balance",
+      "lazy": true,
+      "include-all": true,
+      "hidden": true,
+      "filter": "(?i)🇸🇬|新加坡|狮|(\b(SG|新加坡)\b)",
+      "exclude-filter": "(?i)(\\[?\\d+([xX×＊*]|倍率)[^\\}\\]]*\\]?)", // <-- 新增排除高倍率节点
+      "icon": "https://gh-proxy.com/https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Singapore.png"
+    },
+    {
+      ...groupBaseOption,
+      "name": "韩国🗃️",
+      "type": "select",
+      "proxies": ["KR-自动", "KR-故障转移", "KR-负载均衡"],
+      "exclude-filter": "(?i)(\\[?\\d+([xX×＊*]|倍率)[^\\}\\]]*\\]?)", // <-- 新增排除高倍率节点
+      "include-all": true,
+      "filter": "(?i)🇰🇷|韩国|(\b(KR|韩国)\b)",
+      "icon": "https://gh-proxy.com/https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Korea.png"
+    },
+    {
+      ...groupBaseOption,
+      "name": "KR-自动",
+      "type": "url-test",
+      "tolerance": 50,
+      "lazy": true,
+      "include-all": true,
+      "hidden": true,
+      "filter": "(?i)🇰🇷|韩国|(\b(KR|韩国)\b)",
+      "exclude-filter": "(?i)(\\[?\\d+([xX×＊*]|倍率)[^\\}\\]]*\\]?)", // <-- 新增排除高倍率节点
+      "icon": "https://gh-proxy.com/https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Korea.png"
+    },
+    {
+      ...groupBaseOption,
+      "name": "KR-故障转移",
+      "type": "fallback",
+      "lazy": true,
+      "include-all": true,
+      "hidden": true,
+      "filter": "(?i)🇰🇷|韩国|(\b(KR|韩国)\b)",
+      "exclude-filter": "(?i)(\\[?\\d+([xX×＊*]|倍率)[^\\}\\]]*\\]?)", // <-- 新增排除高倍率节点
+      "icon": "https://gh-proxy.com/https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Korea.png"
+    },
+    {
+      ...groupBaseOption,
+      "name": "KR-负载均衡",
+      "type": "load-balance",
+      "lazy": true,
+      "include-all": true,
+      "hidden": true,
+      "filter": "(?i)🇰🇷|韩国|(\b(KR|韩国)\b)",
+      "exclude-filter": "(?i)(\\[?\\d+([xX×＊*]|倍率)[^\\}\\]]*\\]?)", // <-- 新增排除高倍率节点
+      "icon": "https://gh-proxy.com/https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Korea.png"
+    },
+    {
+      ...groupBaseOption,
+      "name": "美国🗃️",
+      "type": "select",
+      "proxies": ["US-自动", "US-故障转移", "US-负载均衡"],
+      "include-all": true,
+      "filter": "(?i)🇺🇸|美国|洛杉矶|圣何塞|(\b(US|United States)\b)",
+      "exclude-filter": "(?i)(\\[?\\d+([xX×＊*]|倍率)[^\\}\\]]*\\]?)", // <-- 新增排除高倍率节点
+      "icon": "https://gh-proxy.com/https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/United_States.png"
+    },
+    {
+      ...groupBaseOption,
+      "name": "US-自动",
+      "type": "url-test",
+      "tolerance": 50,
+      "lazy": true,
+      "include-all": true,
+      "hidden": true,
+      "filter": "(?i)🇺🇸|美国|洛杉矶|圣何塞|(\b(US|United States)\b)",
+      "exclude-filter": "(?i)(\\[?\\d+([xX×＊*]|倍率)[^\\}\\]]*\\]?)", // <-- 新增排除高倍率节点
+      "icon": "https://gh-proxy.com/https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/United_States.png"
+    },
+    {
+      ...groupBaseOption,
+      "name": "US-故障转移",
+      "type": "fallback",
+      "lazy": true,
+      "include-all": true,
+      "hidden": true,
+      "filter": "(?i)🇺🇸|美国|洛杉矶|圣何塞|(\b(US|United States)\b)",
+      "exclude-filter": "(?i)(\\[?\\d+([xX×＊*]|倍率)[^\\}\\]]*\\]?)", // <-- 新增排除高倍率节点
+      "icon": "https://gh-proxy.com/https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/United_States.png"
+    },
+    {
+      ...groupBaseOption,
+      "name": "US-负载均衡",
+      "type": "load-balance",
+      "lazy": true,
+      "include-all": true,
+      "hidden": true,
+      "filter": "(?i)🇺🇸|美国|洛杉矶|圣何塞|(\b(US|United States)\b)",
+      "exclude-filter": "(?i)(\\[?\\d+([xX×＊*]|倍率)[^\\}\\]]*\\]?)", // <-- 新增排除高倍率节点
+      "icon": "https://gh-proxy.com/https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/United_States.png"
     },
     {
       ...groupBaseOption,
       "name": "故障转移",
       "type": "fallback",
       "include-all": true,
-      "filter": "^(?!.*(官网|套餐|流量|异常|剩余|\\[?\\d+\\s*[xX×＊*]+[^\\]]*\\]?)).*$",
+      "filter": "^(?!.*(官网|套餐|流量|异常|剩余)).*$",
+      "exclude-filter": "(?i)(\\[?\\d+([xX×＊*]|倍率)[^\\}\\]]*\\]?)", // <-- 新增排除高倍率节点
       "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/ambulance.svg"
     },
     {
@@ -402,5 +670,4 @@ function main(config) {
   }
   // 返回修改后的配置
   return config;
-
 }
