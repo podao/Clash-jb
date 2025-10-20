@@ -121,6 +121,7 @@ function main(config) {
       "name": "香港",
       "type": "select",
       "proxies": ["HK-自动", "HK-故障转移", "HK-负载均衡"],
+      "exclude-filter": "(?i)(\\[?\\d+([xX×＊*]|倍率)[^\\}\\]]*\\]?)", // <-- 新增排除高倍率节点
       "include-all": true,
       "filter": "(?i)🇭🇰|香港|(\b(HK|Hong)\b)",
       "icon": "https://gh-proxy.com/https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Hong_Kong.png"
@@ -134,6 +135,7 @@ function main(config) {
       "include-all": true,
       "hidden": true,
       "filter": "(?i)🇭🇰|香港|(\b(HK|Hong)\b)",
+      "exclude-filter": "(?i)(\\[?\\d+([xX×＊*]|倍率)[^\\}\\]]*\\]?)", // <-- 新增排除高倍率节点
       "icon": "https://gh-proxy.com/https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Hong_Kong.png"
     },
     {
@@ -144,6 +146,7 @@ function main(config) {
       "include-all": true,
       "hidden": true,
       "filter": "(?i)🇭🇰|香港|(\b(HK|Hong)\b)",
+      "exclude-filter": "(?i)(\\[?\\d+([xX×＊*]|倍率)[^\\}\\]]*\\]?)", // <-- 新增排除高倍率节点
       "icon": "https://gh-proxy.com/https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Hong_Kong.png"
     },
     {
@@ -154,6 +157,7 @@ function main(config) {
       "include-all": true,
       "hidden": true,
       "filter": "(?i)🇭🇰|香港|(\b(HK|Hong)\b)",
+      "exclude-filter": "(?i)(\\[?\\d+([xX×＊*]|倍率)[^\\}\\]]*\\]?)", // <-- 新增排除高倍率节点
       "icon": "https://gh-proxy.com/https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Hong_Kong.png"
     },
     {
@@ -161,9 +165,10 @@ function main(config) {
       "name": "台湾",
       "type": "select",
       "proxies": ["TW-自动", "TW-故障转移", "TW-负载均衡"],
+      "exclude-filter": "(?i)(\\[?\\d+([xX×＊*]|倍率)[^\\}\\]]*\\]?)", // <-- 新增排除高倍率节点
       "include-all": true,
       "filter": "(?i)🇨🇳|🇹🇼|台湾|(\b(TW|Taiwan|台湾)\b)",
-      "icon": "https://gh-proxy.com/https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/China.png"
+      "icon": "https://gh-proxy.com/https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Taiwan.png"
     },
     {
       ...groupBaseOption,
@@ -174,7 +179,8 @@ function main(config) {
       "include-all": true,
       "hidden": true,
       "filter": "(?i)🇨🇳|🇹🇼|台湾|(\b(TW|Taiwan|台湾)\b)",
-      "icon": "https://gh-proxy.com/https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/China.png"
+      "exclude-filter": "(?i)(\\[?\\d+([xX×＊*]|倍率)[^\\}\\]]*\\]?)", // <-- 新增排除高倍率节点
+      "icon": "https://gh-proxy.com/https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Taiwan.png"
     },
     {
       ...groupBaseOption,
@@ -184,7 +190,8 @@ function main(config) {
       "include-all": true,
       "hidden": true,
       "filter": "(?i)🇨🇳|🇹🇼|台湾|(\b(TW|Taiwan|台湾)\b)",
-      "icon": "https://gh-proxy.com/https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/China.png"
+      "exclude-filter": "(?i)(\\[?\\d+([xX×＊*]|倍率)[^\\}\\]]*\\]?)", // <-- 新增排除高倍率节点
+      "icon": "https://gh-proxy.com/https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Taiwan.png"
     },
     {
       ...groupBaseOption,
@@ -194,16 +201,18 @@ function main(config) {
       "include-all": true,
       "hidden": true,
       "filter": "(?i)🇨🇳|🇹🇼|台湾|(\b(TW|Taiwan|台湾)\b)",
-      "icon": "https://gh-proxy.com/https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/China.png"
+      "exclude-filter": "(?i)(\\[?\\d+([xX×＊*]|倍率)[^\\}\\]]*\\]?)", // <-- 新增排除高倍率节点
+      "icon": "https://gh-proxy.com/https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Taiwan.png"
     },
     {
       ...groupBaseOption,
       "name": "日本",
       "type": "select",
       "proxies": ["JP-自动", "JP-故障转移", "JP-负载均衡"],
+      "exclude-filter": "(?i)(\\[?\\d+([xX×＊*]|倍率)[^\\}\\]]*\\]?)", // <-- 新增排除高倍率节点
       "include-all": true,
       "filter": "(?i)🇯🇵|日本|东京|(\b(JP|日本)\b)",
-      "icon": "https://gh-proxy.com/https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/日本.png"
+      "icon": "https://gh-proxy.com/https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Japan.png"
     },
     {
       ...groupBaseOption,
@@ -214,7 +223,8 @@ function main(config) {
       "include-all": true,
       "hidden": true,
       "filter": "(?i)🇯🇵|日本|东京|(\b(JP|日本)\b)",
-      "icon": "https://gh-proxy.com/https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/日本.png"
+      "exclude-filter": "(?i)(\\[?\\d+([xX×＊*]|倍率)[^\\}\\]]*\\]?)", // <-- 新增排除高倍率节点
+      "icon": "https://gh-proxy.com/https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Japan.png"
     },
     {
       ...groupBaseOption,
@@ -224,7 +234,8 @@ function main(config) {
       "include-all": true,
       "hidden": true,
       "filter": "(?i)🇯🇵|日本|东京|(\b(JP|日本)\b)",
-      "icon": "https://gh-proxy.com/https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/日本.png"
+      "exclude-filter": "(?i)(\\[?\\d+([xX×＊*]|倍率)[^\\}\\]]*\\]?)", // <-- 新增排除高倍率节点
+      "icon": "https://gh-proxy.com/https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Japan.png"
     },
     {
       ...groupBaseOption,
@@ -234,16 +245,18 @@ function main(config) {
       "include-all": true,
       "hidden": true,
       "filter": "(?i)🇯🇵|日本|东京|(\b(JP|日本)\b)",
-      "icon": "https://gh-proxy.com/https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/日本.png"
+      "exclude-filter": "(?i)(\\[?\\d+([xX×＊*]|倍率)[^\\}\\]]*\\]?)", // <-- 新增排除高倍率节点
+      "icon": "https://gh-proxy.com/https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Japan.png"
     },
     {
       ...groupBaseOption,
       "name": "新加坡",
       "type": "select",
       "proxies": ["SG-自动", "SG-故障转移", "SG-负载均衡"],
+      "exclude-filter": "(?i)(\\[?\\d+([xX×＊*]|倍率)[^\\}\\]]*\\]?)", // <-- 新增排除高倍率节点
       "include-all": true,
       "filter": "(?i)🇸🇬|新加坡|狮|(\b(SG|新加坡)\b)",
-      "icon": "https://gh-proxy.com/https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/新加坡.png"
+      "icon": "https://gh-proxy.com/https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Singapore.png"
     },
     {
       ...groupBaseOption,
@@ -254,7 +267,8 @@ function main(config) {
       "include-all": true,
       "hidden": true,
       "filter": "(?i)🇸🇬|新加坡|狮|(\b(SG|新加坡)\b)",
-      "icon": "https://gh-proxy.com/https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/新加坡.png"
+      "exclude-filter": "(?i)(\\[?\\d+([xX×＊*]|倍率)[^\\}\\]]*\\]?)", // <-- 新增排除高倍率节点
+      "icon": "https://gh-proxy.com/https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Singapore.png"
     },
     {
       ...groupBaseOption,
@@ -264,7 +278,8 @@ function main(config) {
       "include-all": true,
       "hidden": true,
       "filter": "(?i)🇸🇬|新加坡|狮|(\b(SG|新加坡)\b)",
-      "icon": "https://gh-proxy.com/https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/新加坡.png"
+      "exclude-filter": "(?i)(\\[?\\d+([xX×＊*]|倍率)[^\\}\\]]*\\]?)", // <-- 新增排除高倍率节点
+      "icon": "https://gh-proxy.com/https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Singapore.png"
     },
     {
       ...groupBaseOption,
@@ -274,16 +289,18 @@ function main(config) {
       "include-all": true,
       "hidden": true,
       "filter": "(?i)🇸🇬|新加坡|狮|(\b(SG|新加坡)\b)",
-      "icon": "https://gh-proxy.com/https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/新加坡.png"
+      "exclude-filter": "(?i)(\\[?\\d+([xX×＊*]|倍率)[^\\}\\]]*\\]?)", // <-- 新增排除高倍率节点
+      "icon": "https://gh-proxy.com/https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Singapore.png"
     },
     {
       ...groupBaseOption,
       "name": "韩国",
       "type": "select",
       "proxies": ["KR-自动", "KR-故障转移", "KR-负载均衡"],
+      "exclude-filter": "(?i)(\\[?\\d+([xX×＊*]|倍率)[^\\}\\]]*\\]?)", // <-- 新增排除高倍率节点
       "include-all": true,
       "filter": "(?i)🇰🇷|韩国|(\b(KR|韩国)\b)",
-      "icon": "https://gh-proxy.com/https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/韩国.png"
+      "icon": "https://gh-proxy.com/https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Korea.png"
     },
     {
       ...groupBaseOption,
@@ -294,7 +311,8 @@ function main(config) {
       "include-all": true,
       "hidden": true,
       "filter": "(?i)🇰🇷|韩国|(\b(KR|韩国)\b)",
-      "icon": "https://gh-proxy.com/https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/韩国.png"
+      "exclude-filter": "(?i)(\\[?\\d+([xX×＊*]|倍率)[^\\}\\]]*\\]?)", // <-- 新增排除高倍率节点
+      "icon": "https://gh-proxy.com/https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Korea.png"
     },
     {
       ...groupBaseOption,
@@ -304,7 +322,8 @@ function main(config) {
       "include-all": true,
       "hidden": true,
       "filter": "(?i)🇰🇷|韩国|(\b(KR|韩国)\b)",
-      "icon": "https://gh-proxy.com/https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/韩国.png"
+      "exclude-filter": "(?i)(\\[?\\d+([xX×＊*]|倍率)[^\\}\\]]*\\]?)", // <-- 新增排除高倍率节点
+      "icon": "https://gh-proxy.com/https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Korea.png"
     },
     {
       ...groupBaseOption,
@@ -314,7 +333,8 @@ function main(config) {
       "include-all": true,
       "hidden": true,
       "filter": "(?i)🇰🇷|韩国|(\b(KR|韩国)\b)",
-      "icon": "https://gh-proxy.com/https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/韩国.png"
+      "exclude-filter": "(?i)(\\[?\\d+([xX×＊*]|倍率)[^\\}\\]]*\\]?)", // <-- 新增排除高倍率节点
+      "icon": "https://gh-proxy.com/https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Korea.png"
     },
     {
       ...groupBaseOption,
@@ -323,6 +343,7 @@ function main(config) {
       "proxies": ["US-自动", "US-故障转移", "US-负载均衡"],
       "include-all": true,
       "filter": "(?i)🇺🇸|美国|洛杉矶|圣何塞|(\b(US|United States)\b)",
+      "exclude-filter": "(?i)(\\[?\\d+([xX×＊*]|倍率)[^\\}\\]]*\\]?)", // <-- 新增排除高倍率节点
       "icon": "https://gh-proxy.com/https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/United_States.png"
     },
     {
@@ -334,6 +355,7 @@ function main(config) {
       "include-all": true,
       "hidden": true,
       "filter": "(?i)🇺🇸|美国|洛杉矶|圣何塞|(\b(US|United States)\b)",
+      "exclude-filter": "(?i)(\\[?\\d+([xX×＊*]|倍率)[^\\}\\]]*\\]?)", // <-- 新增排除高倍率节点
       "icon": "https://gh-proxy.com/https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/United_States.png"
     },
     {
@@ -344,6 +366,7 @@ function main(config) {
       "include-all": true,
       "hidden": true,
       "filter": "(?i)🇺🇸|美国|洛杉矶|圣何塞|(\b(US|United States)\b)",
+      "exclude-filter": "(?i)(\\[?\\d+([xX×＊*]|倍率)[^\\}\\]]*\\]?)", // <-- 新增排除高倍率节点
       "icon": "https://gh-proxy.com/https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/United_States.png"
     },
     {
@@ -354,8 +377,9 @@ function main(config) {
       "include-all": true,
       "hidden": true,
       "filter": "(?i)🇺🇸|美国|洛杉矶|圣何塞|(\b(US|United States)\b)",
+      "exclude-filter": "(?i)(\\[?\\d+([xX×＊*]|倍率)[^\\}\\]]*\\]?)", // <-- 新增排除高倍率节点
       "icon": "https://gh-proxy.com/https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/United_States.png"
-    }
+    },
   ];
 
   // 覆盖规则集
@@ -566,6 +590,11 @@ function main(config) {
     "RULE-SET,twitter-ip,X",
     "RULE-SET,netflix-domain,NETFLIX",
     "RULE-SET,bahamut-domain,台湾",
+    "RULE-SET,bahamut-domain,日本",
+    "RULE-SET,bahamut-domain,香港",
+    "RULE-SET,bahamut-domain,新加坡",
+    "RULE-SET,bahamut-domain,韩国",
+    "RULE-SET,bahamut-domain,美国",
     "RULE-SET,spotify-domain,Spotify",
     "RULE-SET,wechat-classical,DIRECT",
     "RULE-SET,telegram-domain,Telegram",
