@@ -156,7 +156,7 @@ proxies:
 
 # 策略组
 proxy-groups:
-  - {name: 节点选择, type: select, proxies: [全部节点, 亚洲, 香港, 新加坡, 日本, 台湾, 美国, 欧洲, 故障转移], icon: "https://pub-8feead0908f649a8b94397f152fb9cba.r2.dev/select.png"}
+  - {name: 节点选择, type: select, proxies: [全部自动, 全部节点, 亚洲, 香港, 新加坡, 日本, 台湾, 美国, 欧洲], icon: "https://pub-8feead0908f649a8b94397f152fb9cba.r2.dev/select.png"}
 # 功能型代理组默认隐藏 start
   - {name: 🔗 代理, type: select, hidden: true, proxies: [节点选择]}
   - {name: 🚫 拒绝, type: select, hidden: true, proxies: [REJECT]}
@@ -201,7 +201,7 @@ proxy-groups:
   - {name: 隐私拦截, type: select, proxies: [🚫 拒绝, ⚪ 丢弃 ,🟢 直连, 🔗 代理], icon: "https://pub-8feead0908f649a8b94397f152fb9cba.r2.dev/block.png"}
   - {name: Final, type: select, <<: *Include_all,  icon: "https://pub-8feead0908f649a8b94397f152fb9cba.r2.dev/final.png"}
   - {name: 自建/家宽节点, type: select, include-all: true, filter: "(?i)(自建|CF|The_house|private|home|家宽)", icon: "https://pub-8feead0908f649a8b94397f152fb9cba.r2.dev/private_node.png"}
-  - {name: 全部节点, type: url-test, include-all: true, proxies: [全部自动], tolerance: 100, interval: 300, exclude-filter: "(?i)(🟢 直连)", icon: "https://pub-8feead0908f649a8b94397f152fb9cba.r2.dev/all.png"}
+  - {name: 全部节点, type: url-test, include-all: true, tolerance: 100, interval: 300, exclude-filter: "(?i)(🟢 直连)", icon: "https://pub-8feead0908f649a8b94397f152fb9cba.r2.dev/all.png"}
   - {name: 亚洲, type: select, include-all: true, proxies: [亚洲自动], exclude-filter: "(?i)(CN|中国|China|🇨🇳|Beijing|北京|Shanghai|海|Shenzhen|深|Guangzhou|广|Fujian|福)", filter: "(?i)(香港|hk|hongkong|Hong Kong|台|🇹🇼|TW|Taiwan|日本|🇯🇵|JP|Japan|新|🇸🇬|SG|Singapore|马来|🇲🇾|MY|Malaysia|韩|🇰🇷|KR|Korea|澳大利亚|澳洲|🇦🇺|AU|Australia)", icon: "https://pub-8feead0908f649a8b94397f152fb9cba.r2.dev/all.png"}
   - {name: 香港, type: select, proxies: [香港自动, 香港均衡], include-all: true, filter: "(?i)(港|hk|hongkong|Hong Kong)", icon: "https://pub-8feead0908f649a8b94397f152fb9cba.r2.dev/Hongkong.png"}
   - {name: 新加坡, type: select, proxies: [新加坡自动, 新加坡均衡], include-all: true, filter: "(?i)(新|🇸🇬|SG|singapore)", icon: "https://pub-8feead0908f649a8b94397f152fb9cba.r2.dev/Singapore.png"}
@@ -209,7 +209,7 @@ proxy-groups:
   - {name: 台湾, type: select, proxies: [台湾自动, 台湾均衡], include-all: true, filter: "(?i)(台|🇹🇼|TW|Taiwan)", icon: "https://pub-8feead0908f649a8b94397f152fb9cba.r2.dev/Taiwan_China.png"}
   - {name: 美国, type: select, proxies: [美国自动, 美国均衡], include-all: true, filter: "(?i)(美|🇺🇲|US|America|United States)" ,exclude-filter: "(?i)(Australia|Russia)", icon: "https://pub-8feead0908f649a8b94397f152fb9cba.r2.dev/America.png"}
   - {name: 欧洲, type: select, include-all: true, proxies: [欧洲自动], filter: "(?i)(🇦🇱|🇦🇩|🇦🇹|🇧🇾|🇧🇪|🇧🇦|🇧🇬|🇭🇷|🇨🇾|🇨🇿|🇩🇰|🇪🇪|🇫🇮|🇫🇷|🇩🇪|🇬🇷|🇭🇺|🇮🇸|🇮🇪|🇮🇹|🇽🇰|🇱🇻|🇱🇮|🇱🇹|🇱🇺|🇲🇹|🇲🇩|🇲🇨|🇲🇪|🇳🇱|🇲🇰|🇳🇴|🇵🇱|🇵🇹|🇷🇴|🇷🇺|🇸🇲|🇷🇸|🇸🇰|🇸🇮|🇪🇸|🇸🇪|🇨🇭|🇹🇷|🇺🇦|🇬🇧|🇻🇦)", icon: "https://pub-8feead0908f649a8b94397f152fb9cba.r2.dev/European.png"}
-  - {name: 全部自动, type: url-test, include-all: true, tolerance: 100, interval: 300, hidden: true, exclude-filter: "(?i)(CN|中国|China|🇨🇳|Beijing|北京|Shanghai|海|Shenzhen|深|Guangzhou|广|Fujian|福)", icon: "https://pub-8feead0908f649a8b94397f152fb9cba.r2.dev/automation2.png"}
+  - {name: 全部自动, type: url-test, include-all: true, tolerance: 100, interval: 300, hidden: true, exclude-filter: "(?i)(CN|中国|China|🇨🇳|Beijing|北京|Shanghai|海|Shenzhen|深|Guangzhou|广|Fujian|福|直连)", icon: "https://pub-8feead0908f649a8b94397f152fb9cba.r2.dev/automation2.png"}
   - {name: 亚洲自动, type: url-test, include-all: true, tolerance: 100, interval: 300, hidden: true, filter: "(?i)(香港|hk|hongkong|Hong Kong|台|🇹🇼|TW|Taiwan|日本|🇯🇵|JP|Japan|新|🇸🇬|SG|Singapore|马来|🇲🇾|MY|Malaysia|韩|🇰🇷|KR|Korea|澳大利亚|澳洲|🇦🇺|AU|Australia)"}
   - {name: 香港自动, type: url-test, include-all: true, tolerance: 100, interval: 300, hidden: true, filter: "(?i)(香港|hk|hongkong|Hong Kong)", exclude-filter: "(?i)(The_HK_automation|wcloud|0倍|0\\.1倍|0\\.01倍|0\\.3X|0\\.2x|0\\.5x|3X|2x|1\\.5x|traffic|plus)", icon: "https://pub-8feead0908f649a8b94397f152fb9cba.r2.dev/automation2.png"}
   - {name: 新加坡自动, type: url-test, include-all: true, tolerance: 100, interval: 300, hidden: true, filter: "(?i)(新|🇸🇬|SG|Singapore)", exclude-filter: "(?i)(The_SG_automation|wcloud|0倍|0\\.1倍|0\\.01倍|0\\.3X|0\\.2x|0\\.5x|3X|2x|1\\.5x|traffic|plus)", icon: "https://pub-8feead0908f649a8b94397f152fb9cba.r2.dev/automation2.png"}
