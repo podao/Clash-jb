@@ -12,24 +12,24 @@ PProviders: &PProviders {type: http, interval: 86400, health-check: {enable: tru
 # 订阅链接1/2/3是用来写订阅链接的，填入即可
 # 机场名称1/2/3是用来给节点添加备注的，不用记得整行删除
 proxy-providers:
-  Airport_01:
+  一毛:
     <<: *PProviders
     proxy: "🟢 直连"
-    url: "https://ymjc.cfd/api/v1"
+    url: "https://ymjc.cfd/api/v1/client/subscribe?token=116f4cf911dcc0732f892c33dcb04e23"
     override:
       additional-prefix: '[一毛]'
       skip-cert-verify: true
       udp: true
-    exclude-filter: '(IN|India|印度|🇮🇳)'
-  Airport_02:
+    exclude-filter: "(?i)(\\[?\\d+([xX×＊*]|倍率)[^\\}\\]]*\\]?)|(IN|India|印度|🇮🇳)"
+  早安云:
     <<: *PProviders
     proxy: "🟢 直连"
-    url: "https://artislg.com/api/v1/"
-    override:
+    url: "https://artislg.com/api/v1/zaoanyun?ovo=267786fb0b73e06f332eff7bb74b6f1e"
+    over ride:
       additional-prefix: '[早安云]'
       skip-cert-verify: true
       udp: true
-    exclude-filter: '(IN|India|印度|🇮🇳)'
+    exclude-filter: "(?i)(\\[?\\d+([xX×＊*]|倍率)[^\\}\\]]*\\]?)|(IN|India|印度|🇮🇳)"
 
 ##############################################
 
@@ -201,8 +201,8 @@ proxy-groups:
   - {name: 隐私拦截, type: select, proxies: [🚫 拒绝, ⚪ 丢弃 ,🟢 直连, 🔗 代理], icon: "https://pub-8feead0908f649a8b94397f152fb9cba.r2.dev/block.png"}
   - {name: Final, type: select, <<: *Include_all,  icon: "https://pub-8feead0908f649a8b94397f152fb9cba.r2.dev/final.png"}
   - {name: 自建/家宽节点, type: select, include-all: true, filter: "(?i)(自建|CF|The_house|private|home|家宽)", icon: "https://pub-8feead0908f649a8b94397f152fb9cba.r2.dev/private_node.png"}
-  - {name: 全部节点, type: select, include-all: true, proxies: [全部自动], tolerance: 50, interval: 300, exclude-filter: "(?i)(🟢 直连)", icon: "https://pub-8feead0908f649a8b94397f152fb9cba.r2.dev/all.png"}
-  - {name: 亚洲, type: select, include-all: true, proxies: [亚洲自动], exclude-filter: "(?i)(CN|中国|China|🇨🇳|Beijing|北京|Shanghai|海|Shenzhen|深|Guangzhou|广|Fujian|福)", filter: "(?i)(香港|hk|hongkong|Hong Kong|台|🇹🇼|TW|Taiwan|日本|🇯🇵|JP|Japan|新|🇸🇬|SG|Singapore|马来|🇲🇾|MY|Malaysia|韩|🇰🇷|KR|Korea|澳大利亚|澳洲|🇦🇺|AU|Australia)"}
+  - {name: 全部节点, type: url-test, include-all: true, proxies: [全部自动], tolerance: 50, interval: 300, exclude-filter: "(?i)(🟢 直连)", icon: "https://pub-8feead0908f649a8b94397f152fb9cba.r2.dev/all.png"}
+  - {name: 亚洲, type: select, include-all: true, proxies: [亚洲自动], exclude-filter: "(?i)(CN|中国|China|🇨🇳|Beijing|北京|Shanghai|海|Shenzhen|深|Guangzhou|广|Fujian|福)", filter: "(?i)(香港|hk|hongkong|Hong Kong|台|🇹🇼|TW|Taiwan|日本|🇯🇵|JP|Japan|新|🇸🇬|SG|Singapore|马来|🇲🇾|MY|Malaysia|韩|🇰🇷|KR|Korea|澳大利亚|澳洲|🇦🇺|AU|Australia)", icon: "https://pub-8feead0908f649a8b94397f152fb9cba.r2.dev/all.png"}
   - {name: 🇭🇰 香港, type: select, proxies: [香港自动, 香港均衡], include-all: true, filter: "(?i)(港|hk|hongkong|Hong Kong)", icon: "https://pub-8feead0908f649a8b94397f152fb9cba.r2.dev/Hongkong.png"}
   - {name: 🇸🇬 新加坡, type: select, proxies: [新加坡自动, 新加坡均衡], include-all: true, filter: "(?i)(新|🇸🇬|SG|singapore)", icon: "https://pub-8feead0908f649a8b94397f152fb9cba.r2.dev/Singapore.png"}
   - {name: 🇯🇵 日本, type: select, proxies: [日本自动, 日本均衡], include-all: true, filter: "(?i)(日本|🇯🇵|JP|Japan)", icon: "https://pub-8feead0908f649a8b94397f152fb9cba.r2.dev/Japan.png"}
