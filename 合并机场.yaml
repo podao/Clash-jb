@@ -5,7 +5,7 @@ Direct_first: &Direct_first {type: select, proxies: [全球直连, 节点选择,
 
 Include_all: &Include_all {type: select, proxies: [节点选择, 🌐 全部, 🔁 自动, 亚洲, 香港, 新加坡, 日本, 台湾, 美国, 欧洲, 自建/家宽节点, 全球直连], include-all: true, exclude-filter: "(?i)(🟢 直连|REJECT|丢弃)"}
 
-PProviders: &PProviders {type: http, interval: 86400, health-check: {enable: true, url: 'https://www.apple.com/library/test/success.html', interval: 300}, filter: '^(?!.*(拒绝|直连|群|邀请|返利|循环|官网|客服|网站|网址|获取|订阅|流量|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|国内|地址|频道|无法|说明|提示|特别|访问|支持|教程|关注|更新|作者|加入|USE|USED|TOTAL|EXPIRE|EMAIL|Panel|Channel|Author|traffic))'}
+PProviders: &PProviders {type: http, interval: 10800, health-check: {enable: true, url: 'https://www.apple.com/library/test/success.html', interval: 300}, filter: '^(?!.*(拒绝|直连|群|邀请|返利|循环|官网|客服|网站|网址|获取|订阅|流量|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|国内|地址|频道|无法|说明|提示|特别|访问|支持|教程|关注|更新|作者|加入|USE|USED|TOTAL|EXPIRE|EMAIL|Panel|Channel|Author|traffic))'}
 
 ##############################################
 # 机场订阅，Airport_01/02/03名称不能重复,但可修改为自己喜欢的
@@ -19,7 +19,6 @@ proxy-providers:
     override:
       additional-prefix: '[一毛]'
       skip-cert-verify: true
-      update-interval: 10800
       udp: true
     exclude-filter: "(?i)(\\[?\\d+([xX×＊*]|倍率)[^\\}\\]]*\\]?)|(IN|India|印度|🇮🇳)"
   早安云:
@@ -29,7 +28,6 @@ proxy-providers:
     override:
       additional-prefix: '[早安云]'
       skip-cert-verify: true
-      update-interval: 10800
       udp: true
     exclude-filter: "(?i)(\\[?\\d+([xX×＊*]|倍率)[^\\}\\]]*\\]?)|(IN|India|印度|🇮🇳)"
 
