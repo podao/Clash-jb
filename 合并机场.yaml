@@ -15,7 +15,7 @@ proxy-providers:
   一毛:
     <<: *PProviders
     proxy: "🟢 直连"
-    url: "https://ymjc.cfd/api/v1/client/subscribe?token=116f4cf911dcc0732f892c33dcb04e23"
+    url: "https://ymjc.cfd/api/v1/client/subscribe?token=116f4cf911db04e23"
     override:
       additional-prefix: '[一毛]'
       skip-cert-verify: true
@@ -24,7 +24,7 @@ proxy-providers:
   早安云:
     <<: *PProviders
     proxy: "🟢 直连"
-    url: "https://artislg.com/api/v1/zaoanyun?ovo=267786fb0b73e06f332eff7bb74b6f1e"
+    url: "https://artislg.com/api/v1/zaoanyun?ovo=267786fb0b73b74b6f1e"
     override:
       additional-prefix: '[早安云]'
       skip-cert-verify: true
