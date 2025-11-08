@@ -255,7 +255,7 @@ function main(config) {
       "tolerance": 200,
       "include-all": true,
       "filter": "^(?!.*(官网|套餐|流量|异常|剩余)).*$",
-      "exclude-filter": "(?i)(\\[?\\d+([xX×＊*]|倍率)[^\\}\\]]*\\]?)", // <-- 新增排除高倍率节点
+      "exclude-filter": "(?i)(\\[?\\d+([xX×＊*]|倍率)[^\\}\\]]*\\]?)|(IN|India|印度|🇮🇳)",
       "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/speed.svg"
     },
     // 地区分组
@@ -538,7 +538,7 @@ function main(config) {
       "type": "select",
       "proxies": ["节点选择", "延迟选优", "故障转移", "全局直连"],
       "include-all": true,
-      "filter": "(?i)^(?!.*(IN|India|印度|🇮🇳|CN|China|中国大陆|🇨🇳))",
+      "exclude-filter": "(?i)(\\[?\\d+([xX×＊*]|倍率)[^\\}\\]]*\\]?)|(IN|India|印度|🇮🇳)", 
       "icon": "https://fastly.jsdelivr.net/gh/xiaolin-007/clash@main/icon/tiktok.svg"
     },
     {
@@ -579,7 +579,7 @@ function main(config) {
       "type": "select",
       "include-all": true,
       "proxies": ["节点选择", "延迟选优", "故障转移"],
-      "filter": "(?i)^(?!.*(IN|India|印度|🇮🇳|CN|China|中国大陆|🇨🇳))",
+      "exclude-filter": "(?i)(\\[?\\d+([xX×＊*]|倍率)[^\\}\\]]*\\]?)|(IN|India|印度|🇮🇳)",
       "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/chatgpt.svg"
     },
     {
