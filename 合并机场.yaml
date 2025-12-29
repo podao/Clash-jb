@@ -136,9 +136,16 @@ dns:
   fake-ip-filter:
     - "*.lan"
     - "*.local"
-    - geosite:cn
     - geosite:private
     - geosite:apple-cn
+    - "+.msftconnecttest.com"
+    - "+.msftncsi.com"
+    - "localhost.ptlogin2.qq.com"
+    - "localhost.sec.qq.com"
+    - "localhost.work.weixin.qq.com"
+    - "+.in-addr.arpa"
+    - "+.ip6.arpa"
+    - "pool.ntp.org"
   default-nameserver:
     - 223.5.5.5
     - 119.29.29.29
