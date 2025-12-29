@@ -23,15 +23,21 @@ const dnsConfig = {
   "enhanced-mode": "fake-ip",
   "fake-ip-range": "198.18.0.1/16",
   "fake-ip-filter": [
+    # 基础必需
     - "*.lan"
     - "*.local"
+    # 私有地址 & 内部域名
     - geosite:private
+    # Apple 国区（两端都安全）
     - geosite:apple-cn
+    # Windows 网络检测
     - "+.msftconnecttest.com"
     - "+.msftncsi.com"
+    # 登录类（QQ / 微信）
     - "localhost.ptlogin2.qq.com"
     - "localhost.sec.qq.com"
     - "localhost.work.weixin.qq.com"
+    # DNS 反查 & 时间同步
     - "+.in-addr.arpa"
     - "+.ip6.arpa"
     - "pool.ntp.org"
