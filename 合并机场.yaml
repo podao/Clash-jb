@@ -134,15 +134,21 @@ dns:
   # 黑名单模式表示如果匹配成功则不返回 Fake-IP, 白名单模式时只有匹配成功才返回 Fake-IP
   fake-ip-filter-mode: blacklist
   fake-ip-filter:
+    # 基础必需
     - "*.lan"
     - "*.local"
+    # 私有地址 & 内部域名
     - geosite:private
+    # Apple 国区（两端都安全）
     - geosite:apple-cn
+    # Windows 网络检测
     - "+.msftconnecttest.com"
     - "+.msftncsi.com"
+    # 登录类（QQ / 微信）
     - "localhost.ptlogin2.qq.com"
     - "localhost.sec.qq.com"
     - "localhost.work.weixin.qq.com"
+    # DNS 反查 & 时间同步
     - "+.in-addr.arpa"
     - "+.ip6.arpa"
     - "pool.ntp.org"
