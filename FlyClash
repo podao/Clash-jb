@@ -23,23 +23,18 @@ const dnsConfig = {
   "enhanced-mode": "fake-ip",
   "fake-ip-range": "198.18.0.1/16",
   "fake-ip-filter": [
-    // 本地主机/设备
-    "+.lan",
-    "+.local",
-    // // Windows网络出现小地球图标
-    "+.msftconnecttest.com",
-    "+.msftncsi.com",
-    // QQ快速登录检测失败
-    "localhost.ptlogin2.qq.com",
-    "localhost.sec.qq.com",
-      // 追加以下条目
-    "+.in-addr.arpa", 
-    "+.ip6.arpa",
-    "time.*.com",
-    "time.*.gov",
-    "pool.ntp.org",
-    // 微信快速登录检测失败
-    "localhost.work.weixin.qq.com"
+    - "*.lan"
+    - "*.local"
+    - geosite:private
+    - geosite:apple-cn
+    - "+.msftconnecttest.com"
+    - "+.msftncsi.com"
+    - "localhost.ptlogin2.qq.com"
+    - "localhost.sec.qq.com"
+    - "localhost.work.weixin.qq.com"
+    - "+.in-addr.arpa"
+    - "+.ip6.arpa"
+    - "pool.ntp.org"
   ],
   "default-nameserver": ["223.5.5.5","1.2.4.8"],//可修改成自己ISP的DNS
   "nameserver": [...foreignNameservers],
