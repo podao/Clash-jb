@@ -40,9 +40,9 @@ SelectUS: &SelectUS {type: select, proxies: [美国策略, 默认代理, 故障�
 # ==================== 代理提供者 ====================
 proxy-providers:
   # 优质订阅源 - 请修改为您的订阅链接
-  优质服务商: {<<: *BaseProvider, url: 'https://artislg.com/api/v1/zaoanyun?ovo=267786fb0b73e06f332eff7bb74b6f1e', override: {additional-prefix: '[早安云] '}}
+  优质服务商: {<<: *BaseProvider, url: 'https://artislg.com/api/v1/ze', override: {additional-prefix: '[早安云] '}}
   # 备用订阅源 - 请修改为您的订阅链接
-  备用服务商: {<<: *BaseProvider, url: 'https://ymjc.cfd/api/v1/client/subscribe?token=116f4cf911dcc0732f892c33dcb04e23', override: {additional-prefix: '[一毛] '}}
+  备用服务商: {<<: *BaseProvider, url: 'https://ymjc.cfd/api/v1/client/su3', override: {additional-prefix: '[一毛] '}}
 
 # ==================== 监听器 ====================
 listeners:
