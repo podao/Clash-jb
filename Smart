@@ -8,7 +8,7 @@
 
 # ==================== 锚点配置 ====================
 # 代理提供者模板 - 订阅源基础配置
-BaseProvider: &BaseProvider {type: http, interval: 86400, proxy: DIRECT, health-check: {enable: true, url: 'https://www.google.com/generate_204', interval: 300}, filter: '^(?!.*(拒绝|直连|群|邀请|返利|循环|官网|客服|网站|网址|获取|订阅|流量|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|国内|地址|频道|无法|说明|提示|特别|访问|支持|教程|关注|更新|作者|加入|USE|USED|TOTAL|EXPIRE|EMAIL|Panel|Channel|Author|traffic))', exclude-filter: "(?i)(\\[?\\d+([xX×＊*]|倍率)[^\\}\\]]*\\]?)|(IN|India|印度(?!尼)|🇮🇳)"}
+BaseProvider: &BaseProvider {type: http, interval: 86400, proxy: DIRECT, health-check: {enable: true, url: 'https://www.google.com/generate_204', interval: 300}, filter: '^(?!.*(拒绝|直连|群|邀请|返利|循环|官网|客服|网站|网址|获取|订阅|流量|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|国内|地址|频道|无法|说明|提示|特别|访问|支持|教程|关注|更新|作者|加入|USE|USED|TOTAL|EXPIRE|EMAIL|Panel|Channel|Author|traffic))', exclude-filter: "(?i)(\\[?\\d+(\\.\\d+)?([xX×＊*]|倍率|倍)\\]?|(IN|India|印度(?!尼)|🇮🇳))"}
 
 # 策略组类型模板 - 定义不同的策略组基础配置
 BaseFB: &BaseFB {type: fallback, interval: 200, lazy: true, url: 'https://www.google.com/generate_204'}
@@ -40,9 +40,9 @@ SelectUS: &SelectUS {type: select, proxies: [美国策略, 默认代理, 故障�
 # ==================== 代理提供者 ====================
 proxy-providers:
   # 优质订阅源 - 请修改为您的订阅链接
-  优质服务商: {<<: *BaseProvider, url: 'https://artislg.com/api/v1/ze', override: {additional-prefix: '[早安云] '}}
+  优质服务商: {<<: *BaseProvider, url: 'https://artislg.com/api/v1/zaoanyun?ovo=267786fb0b73e06f332eff7bb74b6f1e', override: {additional-prefix: '[早安云] '}}
   # 备用订阅源 - 请修改为您的订阅链接
-  备用服务商: {<<: *BaseProvider, url: 'https://ymjc.cfd/api/v1/client/su3', override: {additional-prefix: '[一毛] '}}
+  备用服务商: {<<: *BaseProvider, url: 'https://ymjc.cfd/api/v1/client/subscribe?token=116f4cf911dcc0732f892c33dcb04e23', override: {additional-prefix: '[一毛] '}}
 
 # ==================== 监听器 ====================
 listeners:
