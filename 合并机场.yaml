@@ -15,21 +15,21 @@ proxy-providers:
   一毛:
     <<: *PProviders
     proxy: "🟢 直连"
-    url: "https://ymjc.cfd/api/v1/client/subscribe?token=11b04e23"
+    url: "https://ymjc.cfd/api/v1/client/subscribe?token="
     override:
       additional-prefix: '[一毛]'
       skip-cert-verify: true
       udp: true
-    exclude-filter: "(?i)(\\[?\\d+([xX×＊*]|倍率)[^\\}\\]]*\\]?)|(IN|India|印度(?!尼)|🇮🇳)"
+    exclude-filter: "(?i)(\\[?\\d+(\\.\\d+)?([xX×＊*]|倍率|倍)[^\\]]*\\]?)|(IN|India|印度(?!尼)|🇮🇳)"
   早安云:
     <<: *PProviders
     proxy: "🟢 直连"
-    url: "https://artislg.com/api/v1/zaoanyun?ovo=2b6f1e"
+    url: "https://artislg.com/api/v1/zaoanyun?ovo="
     override:
       additional-prefix: '[早安云]'
       skip-cert-verify: true
       udp: true
-    exclude-filter: "(?i)(\\[?\\d+([xX×＊*]|倍率)[^\\}\\]]*\\]?)|(IN|India|印度(?!尼)|🇮🇳)"
+    exclude-filter: "(?i)(\\[?\\d+(\\.\\d+)?([xX×＊*]|倍率|倍)[^\\]]*\\]?)|(IN|India|印度(?!尼)|🇮🇳)"
 
 ##############################################
 
@@ -167,7 +167,7 @@ dns:
 
 proxies: 
   - name: "🟢 直连"
-    输入: direct
+    type: direct
     udp: true
 
 
