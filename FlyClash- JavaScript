@@ -230,6 +230,8 @@ function main(config) {
 
   // 覆盖原配置中DNS配置
   config["dns"] = dnsConfig;
+  // 开启 TCP 并发连接
+  config["tcp-concurrent"] = true;
 
   // 覆盖原配置中的代理组
   config["proxy-groups"] = [
