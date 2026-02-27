@@ -53,8 +53,10 @@ SelectAI: &SelectAI {type: fallback, proxies: [狮城策略, 日本策略, 台�
 # 注意：请提供您的机场订阅链接，每个链接一行，并为每个机场命名，末尾的[优][备]为每个节点添加机场名称前缀，可自定义
 proxy-providers:
   # 优质订阅源 - 优质节点集合，使用时请修改
-  优质服务商: {<<: *BaseProvider, url: '优质订阅源地址', override: {additional-prefix: '[优] '}}
-  # 备用订阅源 - 次优节点集合，使用时请修改
+  一毛: {<<: *BaseProvider, url: 'https://ymjc.cfd/api/v1/client/subscribe?token=', override: {additional-prefix: '[优] 一毛'}}
+  早安: {<<: *BaseProvider, url: 'https://artislg.com/api/v1/zaoanyun?ovo=', override: {additional-prefix: '[优] 早安'}}
+  超悦: {<<: *BaseProvider, url: 'https://0fmekh.chaoyue.quest:8443/api/v1/client/', override: {additional-prefix: '[优] 超悦'}}
+  备用服务商: {<<: *BaseProvider, url: '备用订阅源地址', override: {additional-prefix: '[中] '}}
   备用服务商: {<<: *BaseProvider, url: '备用订阅源地址', override: {additional-prefix: '[备] '}}
 
 # ==================== 监听器 ====================
@@ -212,7 +214,7 @@ proxy-groups:
   - {name: 游戏平台,     <<: *SelectPY, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Game.png}
   - {name: Github,       <<: *SelectPY, icon: https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/04ProxySoft/github(1).png}
   - {name: 微软服务,     <<: *SelectPY, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Microsoft.png}
-  - {name: 谷歌服务,     <<: *SelectPY, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Google_Search.png}
+  - {name: 谷歌服务,     <<: *SelectAI, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Google_Search.png}
   - {name: 苹果服务,     <<: *SelectPY, icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Apple.png}
 
   # ==================== 地区策略组 ====================
