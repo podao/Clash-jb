@@ -185,7 +185,7 @@ proxies:
 
 # 策略组
 proxy-groups:
-  - {name: 节点选择, type: select, proxies: [ 香港, 新加坡, 日本, 台湾, 美国, 欧洲], icon: "https://pub-8feead0908f649a8b94397f152fb9cba.r2.dev/select.png"}
+  - {name: 节点选择, type: url-test, proxies: [ 🔁 自动, 香港自动, 新加坡自动, 日本自动, 台湾自动, 美国自动, 欧洲自动], icon: "https://pub-8feead0908f649a8b94397f152fb9cba.r2.dev/select.png"}
 # 功能型代理组默认隐藏 start
   - {name: 🔗 代理, type: select, hidden: true, proxies: [节点选择]}
   - {name: 🚫 拒绝, type: select, hidden: true, proxies: [REJECT]}
