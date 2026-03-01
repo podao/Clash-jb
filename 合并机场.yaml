@@ -5,7 +5,9 @@ Direct_first: &Direct_first {type: select, proxies: [全球直连, 节点选择,
 
 Include_all: &Include_all {type: select, proxies: [节点选择, 🔁 自动, 香港, 新加坡, 日本, 台湾, 美国, 欧洲, 自建/家宽节点, 全球直连], include-all: true, exclude-filter: "(?i)(🟢 直连|REJECT|丢弃)"}
 
-Proxy_AI: &Proxy_AI {type: url-test, tolerance: 150, interval: 300, proxies: [新加坡自动, 日本自动, 台湾自动, 美国自动, 欧洲自动]}
+AI: &AI {type: url-test, tolerance: 150, interval: 300, proxies: [新加坡自动, 日本自动, 台湾自动, 欧洲自动]}
+
+TikTok: &TikTok {type: url-test, tolerance: 150, interval: 300, proxies: [新加坡自动, 日本自动, 台湾自动, 美国自动, 欧洲自动]}
 
 PProviders: &PProviders {type: http, interval: 10800, health-check: {enable: true, url: 'https://www.apple.com/library/test/success.html', interval: 300}, filter: '^(?!.*(拒绝|直连|群|邀请|返利|循环|官网|客服|网站|网址|获取|订阅|流量|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|国内|地址|频道|无法|说明|提示|特别|访问|支持|教程|关注|更新|作者|加入|USE|USED|TOTAL|EXPIRE|EMAIL|Panel|Channel|Author|traffic))'}
 
@@ -17,7 +19,7 @@ proxy-providers:
   一毛:
     <<: *PProviders
     proxy: "🟢 直连"
-    url: "https://ymjc.cfd/api/v1/client/subscribe?token="
+    url: "https://ymjc.cfd/api/v1/client/subscribe?token=123"
     override:
       additional-prefix: '[一毛]'
       skip-cert-verify: true
@@ -26,7 +28,7 @@ proxy-providers:
   早安云:
     <<: *PProviders
     proxy: "🟢 直连"
-    url: "https://artislg.com/api/v1/zaoanyun?ovo="
+    url: "https://artislg.com/api/v1/zaoanyun?ovo=26e"
     override:
       additional-prefix: '[早安]'
       skip-cert-verify: true
@@ -35,7 +37,7 @@ proxy-providers:
   超悦:
     <<: *PProviders
     proxy: "🟢 直连"
-    url: "https://0fmekh.chaoyue.quest:8443/api/v1/client/"
+    url: "https://0fmekh.chaoyue.quest:8443/api/v1/client/932"
     override:
       additional-prefix: '[超悦]'
       skip-cert-verify: true
@@ -192,15 +194,15 @@ proxy-groups:
   - {name: ⚪ 丢弃, type: select, hidden: true, proxies: [REJECT-DROP]}
 # over
   - {name: YouTube, <<: *Proxy_first, icon: "https://pub-8feead0908f649a8b94397f152fb9cba.r2.dev/youtube.png"}
-  - {name: Google, <<: *Proxy_AI, icon: "https://pub-8feead0908f649a8b94397f152fb9cba.r2.dev/google.png"}
+  - {name: Google, <<: *AI, icon: "https://pub-8feead0908f649a8b94397f152fb9cba.r2.dev/google.png"}
   - {name: Meta, <<: *Proxy_first, icon: "https://pub-8feead0908f649a8b94397f152fb9cba.r2.dev/meta.png"}
-  - {name: AI, <<: *Proxy_AI, icon: "https://pub-8feead0908f649a8b94397f152fb9cba.r2.dev/ai.png"}
+  - {name: AI, <<: *AI, icon: "https://pub-8feead0908f649a8b94397f152fb9cba.r2.dev/ai.png"}
   - {name: GitHub, <<: *Proxy_first, icon: "https://pub-8feead0908f649a8b94397f152fb9cba.r2.dev/github.png"}
   - {name: OneDrive, <<: *Proxy_first, icon: "https://pub-8feead0908f649a8b94397f152fb9cba.r2.dev/onedrive.png"}
   - {name: Microsoft, <<: *Proxy_first, icon: "https://pub-8feead0908f649a8b94397f152fb9cba.r2.dev/microsoft.png"}
   - {name: Telegram, <<: *Proxy_first, icon: "https://pub-8feead0908f649a8b94397f152fb9cba.r2.dev/telegram.png"}
   - {name: Discord, <<: *Proxy_first, icon: "https://pub-8feead0908f649a8b94397f152fb9cba.r2.dev/discord.png"}
-  - {name: TikTok, <<: *Proxy_AI, icon: "https://pub-8feead0908f649a8b94397f152fb9cba.r2.dev/tiktok.png"}
+  - {name: TikTok, <<: *TikTok, icon: "https://pub-8feead0908f649a8b94397f152fb9cba.r2.dev/tiktok.png"}
   - {name: NETFLIX, <<: *Proxy_first, icon: "https://pub-8feead0908f649a8b94397f152fb9cba.r2.dev/netflix.png"}
   - {name: DisneyPlus, <<: *Proxy_first, icon: "https://pub-8feead0908f649a8b94397f152fb9cba.r2.dev/disney.png"}
   - {name: HBO, <<: *Proxy_first, icon: "https://pub-8feead0908f649a8b94397f152fb9cba.r2.dev/hbo.png"}
