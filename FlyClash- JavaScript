@@ -3,14 +3,14 @@ const domesticNameservers = [
   "https://223.5.5.5/dns-query", // 阿里DoH
   "https://doh.pub/dns-query" // 腾讯DoH
 ];
-// 国外DNS服务器
+// 国外DNS服务器 - 优化版
 const foreignNameservers = [
-  "https://208.67.222.222/dns-query", // OpenDNS
-  "https://77.88.8.8/dns-query", //YandexDNS
-  "https://1.1.1.1/dns-query", // CloudflareDNS
-  "https://8.8.4.4/dns-query", // GoogleDNS  
-
+  "https://doh.opendns.com/dns-query",     // OpenDNS 
+  "https://dns.google/dns-query",          // Google DoH 
+  "https://cloudflare-dns.com/dns-query",  // Cloudflare DoH 
+  "https://dns.yandex.com/dns-query"       // Yandex 
 ];
+
 // DNS配置
 const dnsConfig = {
   "enable": true,
@@ -226,7 +226,6 @@ function main(config) {
       "name": "节点选择",
       "type": "select",
       "proxies": ["延迟选优", "香港🗃️", "日本🗃️", "新加坡🗃️", "台湾🗃️", "美国🗃️"],
-      "include-all": true,
       "filter": "^(?!.*(官网|套餐|流量|异常|剩余)).*$",
       "exclude-filter": "(?i)(\\[?\\d+(\\.\\d+)?\\s*(x|×|＊|\\*|倍率|倍)\\]?)|(IN|India|印度|🇮🇳)", // <-- 新增排除高倍率节点
       "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/adjust.svg"
