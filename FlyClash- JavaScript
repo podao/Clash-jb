@@ -165,15 +165,15 @@ const ruleProviders = {
 // 规则
 const rules = [
   // 自定义规则
-  "DOMAIN-SUFFIX,googleapis.cn,节点选择", // Google服务
-  "DOMAIN-SUFFIX,gstatic.com,节点选择", // Google静态资源
-  "DOMAIN-SUFFIX,xn--ngstr-lra8j.com,节点选择", // Google Play下载服务
   "DOMAIN-SUFFIX,github.io,节点选择", // Github Pages
   "DOMAIN,v2rayse.com,节点选择", // V2rayse节点工具
+  "DOMAIN-SUFFIX,pornhub.com,AI", // pornhub
+  "DOMAIN-SUFFIX,phncdn.com,AI",
+  "DOMAIN-SUFFIX,phprcdn.com,AI",
   // Loyalsoldier 规则集
+  "RULE-SET,reject,广告过滤",
   "RULE-SET,applications,全局直连",
   "RULE-SET,private,全局直连",
-  "RULE-SET,reject,广告过滤",
   "RULE-SET,AI,AI",
   "RULE-SET,icloud,苹果服务",
   "RULE-SET,apple,苹果服务",
@@ -190,7 +190,6 @@ const rules = [
   "RULE-SET,cncidr,全局直连,no-resolve",
   "RULE-SET,telegramcidr,电报消息,no-resolve",
   // 其他规则
-  "GEOSITE,CN,全局直连",
   "GEOIP,LAN,全局直连,no-resolve",
   "GEOIP,CN,全局直连,no-resolve",
   "MATCH,漏网之鱼"
