@@ -265,6 +265,7 @@ rules:
   - RULE-SET,apple_firmware_domain,Apple
   - RULE-SET,apple_domain,Apple
   - RULE-SET,tiktok_domain,TikTok
+  - RULE-SET,porn_domain,AI
   - RULE-SET,netflix_domain,NETFLIX
   - RULE-SET,netflix_ip,NETFLIX,no-resolve
   - RULE-SET,disney_domain,DisneyPlus
