@@ -253,8 +253,8 @@ rules:
   - RULE-SET,google_domain,Google
   - RULE-SET,google_asn_cn,Google,no-resolve
   - RULE-SET,google_ip,Google,no-resolve
-  - RULE-SET,telegram_domain,Telegram
-  - RULE-SET,telegram_ip,Telegram,no-resolve
+  - RULE-SET,telegram_domain,AI 
+  - RULE-SET,telegram_ip,AI,no-resolve
   - RULE-SET,discord_domain,Discord
   - RULE-SET,discord_asn,Discord,no-resolve
   - RULE-SET,private_domain,全球直连
