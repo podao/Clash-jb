@@ -559,7 +559,7 @@ function main(config) {
       ...groupBaseOption,
       "name": "电报消息",
       "type": "select",
-      "proxies": ["节点选择", "延迟选优", "故障转移"],
+      "proxies": ["SG-自动", "JP-自动", "TW-自动", "KR-自动"],
       "include-all": true,
       "filter": "^(?!.*(官网|套餐|流量|异常|剩余|DIRECT|REJECT|直连)).*$",
       "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/telegram.svg"
