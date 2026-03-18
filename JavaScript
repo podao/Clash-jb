@@ -224,7 +224,7 @@ function main(config) {
       ...groupBaseOption,
       "name": "节点选择",
       "type": "select",
-      "proxies": ["延迟选优", "香港🗃️", "日本🗃️", "新加坡🗃️", "台湾🗃️", "美国🗃️"],
+      "proxies": ["延迟选优", "香港🗃️", "日本🗃️", "新加坡🗃️", "台湾🗃️", "韩国🗃️", "美国🗃️"],
       "filter": "^(?!.*(官网|套餐|流量|异常|剩余|DIRECT|REJECT|直连)).*$",
       "exclude-filter": "(?i)(\\[?\\d+(\\.\\d+)?\\s*(x|×|＊|\\*|倍率|倍)\\]?)|(IN|India|印度|🇮🇳)", // <-- 新增排除高倍率节点
       "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/adjust.svg"
