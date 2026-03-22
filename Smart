@@ -22,7 +22,7 @@
 BaseProvider: &BaseProvider {type: http, interval: 86400, proxy: DIRECT, health-check: {enable: true, url: 'http://www.gstatic.com/generate_204', interval: 300}, filter: '^(?!.*(群|邀请|返利|循环|官网|客服|网站|网址|获取|订阅|流量|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|国内|地址|频道|无法|说明|使用|提示|特别|访问|支持|教程|关注|更新|作者|加入|USE|USED|TOTAL|EXPIRE|EMAIL|Panel|Channel|Author))'}
 
 # 策略组类型模板 - 定义不同的策略组基础配置
-BaseFB: &BaseFB {type: fallback, tolerance: 100, interval: 300, lazy: true, url: 'http://www.gstatic.com/generate_204'}
+BaseZN: &BaseZN {type: fallback, tolerance: 100, interval: 300, lazy: true, url: 'http://www.gstatic.com/generate_204'}
 BaseCH: &BaseCH {type: load-balance, tolerance: 100, interval: 300, lazy: true, url: 'http://www.gstatic.com/generate_204', strategy: consistent-hashing, hidden: true}
 BaseCR: &BaseCR {type: load-balance, tolerance: 100, interval: 300, lazy: true, url: 'http://www.gstatic.com/generate_204', strategy: round-robin, hidden: true}
 BaseUT: &BaseUT {type: url-test, tolerance: 100, interval: 300, lazy: true, url: 'http://www.gstatic.com/generate_204', hidden: true}
@@ -40,23 +40,19 @@ FilterOT: &FilterOT '^(?!.*(DIRECT|直接连接|美|港|坡|台|新|日|韩|奥|
 FilterAL: &FilterAL '^(?!.*(DIRECT|直接连接|群|邀请|返利|循环|官网|客服|网站|网址|获取|订阅|流量|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|国内|地址|频道|无法|说明|使用|提示|特别|访问|支持|教程|关注|更新|作者|加入|USE|USED|TOTAL|EXPIRE|EMAIL|Panel|Channel|Author))'
 
 # 策略组代理列表模板 - 预定义的代理节点优先级排序
-SelectFB: &SelectFB {type: select, proxies: [智能选择, 香港策略, 新加坡策略, 日本策略, 韩国策略, 美国策略, 台湾策略, 欧盟策略, 冷门自选, 直接连接]}
-SelectPY: &SelectPY {type: select, proxies: [默认代理, 智能选择, 香港策略, 新加坡策略, 日本策略, 韩国策略, 美国策略, 台湾策略, 欧盟策略, 冷门自选, 直接连接]}
-SelectDC: &SelectDC {type: select, proxies: [直接连接, 默认代理, 智能选择, 香港策略, 新加坡策略, 日本策略, 韩国策略, 美国策略, 台湾策略, 欧盟策略, 全球手动]}
-SelectHK: &SelectHK {type: select, proxies: [香港策略, 默认代理, 智能选择, 新加坡策略, 日本策略, 韩国策略, 美国策略, 台湾策略, 欧盟策略, 冷门自选, 直接连接]}
-SelectSG: &SelectSG {type: select, proxies: [新加坡策略, 默认代理, 智能选择, 香港策略, 日本策略, 韩国策略, 美国策略, 台湾策略, 欧盟策略, 冷门自选, 直接连接]}
-SelectUS: &SelectUS {type: select, proxies: [美国策略, 默认代理, 智能选择, 香港策略, 新加坡策略, 日本策略, 韩国策略, 台湾策略, 欧盟策略, 冷门自选]}
+SelectMR: &SelectMR {type: select, proxies: [智能选择, 香港策略, 新加坡策略, 日本策略, 韩国策略, 美国策略, 台湾策略, 欧盟策略, 冷门自选, 直接连接]}
+SelectYL: &SelectYL {type: select, proxies: [默认代理, 香港策略, 新加坡策略, 日本策略, 韩国策略, 美国策略, 台湾策略, 欧盟策略, 冷门自选]}
 SelectAI: &SelectAI {type: fallback, proxies: [新加坡策略, 日本策略, 台湾策略, 韩国策略, 欧盟策略]}
 
 # ==================== 代理提供者 ====================
 # 注意：请提供您的机场订阅链接，每个链接一行，并为每个机场命名，末尾的[优][备]为每个节点添加机场名称前缀，可自定义
 proxy-providers:
   # 优质订阅源 - 优质节点集合，使用时请修改
-  一毛: {<<: *BaseProvider, url: '', override: {additional-prefix: '[优] 一毛'}}
-  早安云: {<<: *BaseProvider, url: '', override: {additional-prefix: '[优] 早安云'}}
-  CM: {<<: *BaseProvider, url: '', override: {additional-prefix: '[优] cm'}}
-  CF: {<<: *BaseProvider, url: 'h', override: {additional-prefix: '[优] CF'}}
-  超悦: {<<: *BaseProvider, url: '2', override: {additional-prefix: '[中] 超悦'}}
+  一毛: {<<: *BaseProvider, url: 'https:4e23', override: {additional-prefix: '[优] 一毛'}}
+  早安云: {<<: *BaseProvider, url: 'https://1e', override: {additional-prefix: '[优] 早安云'}}
+  CM: {<<: *BaseProvider, url: 'https://n2ef', override: {additional-prefix: '[优] cm'}}
+  CF: {<<: *BaseProvider, url: 'https://cclash', override: {additional-prefix: '[优] CF'}}
+  超悦: {<<: *BaseProvider, url: 'https://j432', override: {additional-prefix: '[中] 超悦'}}
   备用服务商: {<<: *BaseProvider, url: '备用订阅源地址', override: {additional-prefix: '[备] '}}
 
 # ==================== 监听器 ====================
@@ -196,8 +192,8 @@ dns:
 # ==================== 代理策略组 ====================
 proxy-groups:
   # ==================== 主要策略组 ====================
-  - {name: 默认代理,     <<: *SelectFB, icon: https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/adjust.svg}
-  - {name: 智能选择,     <<: *BaseFB, proxies: [香港策略, 新加坡策略, 日本策略, 台湾策略, 韩国策略, 美国策略, 欧盟策略, 冷门自选, 直接连接], icon: https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/balance.svg}
+  - {name: 默认代理,     <<: *SelectMR, icon: https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/adjust.svg}
+  - {name: 智能选择,     <<: *BaseZN, proxies: [香港策略, 新加坡策略, 日本策略, 台湾策略, 韩国策略, 美国策略, 欧盟策略, 冷门自选, 直接连接], icon: https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/balance.svg}
 
   # ==================== 地区策略组 ====================
   - {name: 香港策略,     type: select, proxies: [香港智能], include-all: true, filter: *FilterHK, icon: https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/flags/hk.svg}
@@ -210,18 +206,18 @@ proxy-groups:
   - {name: 全球手动,     type: select, include-all: true, filter: *FilterAL, icon: https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/link.svg}
 
   # ==================== 媒体服务 ====================
-  - {name: 油管视频,     <<: *SelectPY, icon: https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/youtube.svg}
-  - {name: 奈飞视频,     <<: *SelectPY, icon: https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/netflix.svg}
+  - {name: 油管视频,     <<: *SelectYL, icon: https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/youtube.svg}
+  - {name: 奈飞视频,     <<: *SelectYL, icon: https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/netflix.svg}
   # ==================== 社交平台 ====================
-  - {name: 电报消息,     <<: *SelectPY, icon: https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/telegram.svg}
+  - {name: 电报消息,     <<: *SelectYL, icon: https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/telegram.svg}
   # ==================== 商业服务 ====================
   - {name: 人工智能,     <<: *SelectAI, icon: https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/chatgpt.svg}
   - {name: 谷歌服务,     <<: *SelectAI, icon: https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/google.svg}
-  - {name: 苹果服务,     <<: *SelectPY, icon: https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/apple.svg}
+  - {name: 苹果服务,     <<: *SelectYL, icon: https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/apple.svg}
 
   # ==================== 其他策略组 ====================
   - {name: 冷门自选,     type: select, include-all: true, filter: *FilterOT, icon: https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/fish.svg}
-  - {name: 兜底流量,     <<: *SelectPY, icon: https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/ambulance.svg}
+  - {name: 兜底流量,     <<: *SelectYL, icon: https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/ambulance.svg}
   - {name: 直接连接,     type: select, proxies: [DIRECT], hidden: true, icon: https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/link.svg}
 
 
