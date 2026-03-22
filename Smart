@@ -153,26 +153,44 @@ hosts:
 # DNS配置
 dns:
   enable: true
-  ipv6: true
+  ipv6: false          # 建议关闭：国内移动网络 IPv6 往往不稳定，关闭后网页首屏开启更快
   use-hosts: true
   enhanced-mode: fake-ip
-  respect-rules: true 
-  # 调整 nameserver，增加国内加速
-  nameserver:
-    - https://dns.alidns.com/dns-query # 增加阿里 DOH 
-    - https://doh.pub/dns-query         # 增加腾讯 DOH
-  fallback:
-    - https://dns.google/dns-query
-    - https://cloudflare-dns.com/dns-query
-  # 修正：确保国内解析不走 fake-ip
+  listen: 0.0.0.0:1053
+  respect-rules: true
+  prefer-h3: true      # 开启 H3 加速加密查询
+  
+  fake-ip-range: 198.18.0.1/16
   fake-ip-filter:
-    - rule-set:Direct
-    - rule-set:direct
-    - rule-set:Private
-    - rule-set:private
-    - rule-set:cncidr
-    - "geosite:cn"
-    - "+.bing.com"
+    - "geosite:cn"      # 核心：国内域名不走 Fake-IP，直接由系统解析，秒开且省电
+    - "rule-set:direct"
+    - "geosite:private"
+    - "geosite:apple-cn"
+    - "+.msftconnecttest.com"
+    - "+.msftncsi.com"
+    - "pool.ntp.org"
+    - "*.lan"
+    - "*.local"
+
+  # 基础 DNS：仅用于解析 DoH 的域名，必须是纯 IP
+  default-nameserver:
+    - 223.5.5.5
+    - 119.29.29.29
+
+  # 代理服务器解析：防止节点域名解析不出导致“节点超时”
+  proxy-server-nameserver:
+    - https://dns.alidns.com/dns-query
+    - https://doh.pub/dns-query
+
+  # 直连域名解析：命中 DIRECT 规则的走这里
+  direct-nameserver:
+    - https://dns.alidns.com/dns-query
+    - https://doh.pub/dns-query
+
+  # 默认解析：未命中以上规则的（通常是代理域名）走这里
+  nameserver:
+    - https://dns.google/dns-query
+    - https://dns.cloudflare.com/dns-query
 
 # ==================== 代理策略组 ====================
 proxy-groups:
@@ -221,12 +239,9 @@ rules:
   - RULE-SET,reject,REJECT
   - AND,((DST-PORT,443),(NETWORK,UDP)),REJECT  # 阻止 QUIC
 
-  # 2. 基础直连 (局域网、直连规则集、应用程序)
+  # 2. 基础直连 (局域网、直连规则集)
   - RULE-SET,private,直接连接
   - RULE-SET,direct,直接连接
-  - RULE-SET,applications,直接连接
-  - DOMAIN,clash.razord.top,直接连接
-  - DOMAIN,yacd.haishan.me,直接连接
 
   # 3. 国内流量强制分流 (解决你连接慢的核心：在代理之前拦截国内 IP)
   - RULE-SET,cncidr,直接连接,no-resolve  # 关键：国内 IP 段直接出
