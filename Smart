@@ -51,7 +51,6 @@ proxy-providers:
   一毛: {<<: *BaseProvider, url: 'https:4e23', override: {additional-prefix: '[优] 一毛'}}
   早安云: {<<: *BaseProvider, url: 'https://1e', override: {additional-prefix: '[优] 早安云'}}
   CM: {<<: *BaseProvider, url: 'https://n2ef', override: {additional-prefix: '[优] cm'}}
-  CF: {<<: *BaseProvider, url: 'https://cclash', override: {additional-prefix: '[优] CF'}}
   超悦: {<<: *BaseProvider, url: 'https://j432', override: {additional-prefix: '[中] 超悦'}}
   备用服务商: {<<: *BaseProvider, url: '备用订阅源地址', override: {additional-prefix: '[备] '}}
 
