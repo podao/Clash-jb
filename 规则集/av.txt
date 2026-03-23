@@ -1,0 +1,25 @@
+payload:
+  # 主站
+  - DOMAIN-SUFFIX,pornhub.com
+  - DOMAIN-SUFFIX,xvideos.com
+  - DOMAIN-SUFFIX,xnxx.com
+  - DOMAIN-SUFFIX,xhamster.com
+  - DOMAIN-SUFFIX,youporn.com
+  - DOMAIN-SUFFIX,91porn.com
+  - DOMAIN-KEYWORD,missav
+  - DOMAIN-KEYWORD,njavtv
+  - DOMAIN-KEYWORD,123av
+  - DOMAIN-KEYWORD,jable
+  - DOMAIN-SUFFIX,rou.video
+
+  # CDN（关键）
+  - DOMAIN-SUFFIX,phncdn.com
+  - DOMAIN-SUFFIX,phprcdn.com
+  - DOMAIN-SUFFIX,phcdn.com
+
+  # 日本 AV
+  - DOMAIN-SUFFIX,dmm.co.jp
+  - DOMAIN-SUFFIX,fanza.com
+
+  # 其他
+  - DOMAIN-SUFFIX,redtube.com
