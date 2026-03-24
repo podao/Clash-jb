@@ -247,7 +247,6 @@ proxy-groups:
   # ==================== 社交平台 ====================
   - {name: 电报消息,     <<: *SelectYL, icon: https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/telegram.svg}
 
-
   # ==================== 其他策略组 ====================
   - {name: 冷门自选,     type: select, include-all: true, filter: *FilterOT, icon: https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/fish.svg}
   - {name: 兜底流量,     <<: *SelectYL, icon: https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/ambulance.svg}
