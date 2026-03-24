@@ -1,0 +1,422 @@
+# >>=====================================<<
+# ||                                     ||
+# ||      ██████╗  ██████╗  ██████╗      ||
+# ||     ██╔════╝ ██╔════╝ ██╔════╝      ||
+# ||     ███████╗ ███████╗ ███████╗      ||
+# ||     ██╔═══██╗██╔═══██╗██╔═══██╗     ||
+# ||     ╚██████╔╝╚██████╔╝╚██████╔╝     ||
+# ||      ╚═════╝  ╚═════╝  ╚═════╝      ||
+# ||                                     ||
+# >>=====================================<<
+# 名称: MihomoSmartProMax
+# 地址: https://github.com/666OS/YYDS
+# 版本: v6-20260131
+# 原作: YYDS666
+# 修改: HenryChiao
+# 更新: 2026 年 1 月 31 日
+# 频道: https://t.me/Pinched666
+# 描述: 在proxy-providers加入您的机场订阅链接（代理提供者）
+
+# ==================== 锚点配置 ====================
+# 代理提供者模板 - 订阅源基础配置
+BaseProvider: &BaseProvider {type: http, interval: 86400, proxy: DIRECT, health-check: {enable: true, url: 'http://www.gstatic.com/generate_204', interval: 300}, filter: '^(?!.*(群|邀请|返利|循环|官网|客服|网站|网址|获取|订阅|流量|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|国内|地址|频道|无法|说明|使用|提示|特别|访问|支持|教程|关注|更新|作者|加入|USE|USED|TOTAL|EXPIRE|EMAIL|Panel|Channel|Author))'}
+
+# 策略组类型模板 - 定义不同的策略组基础配置
+BaseZY: &BaseZY {type: fallback, tolerance: 100, interval: 300, lazy: true, url: 'http://www.gstatic.com/generate_204'}
+BaseCH: &BaseCH {type: load-balance, tolerance: 100, interval: 300, lazy: true, url: 'http://www.gstatic.com/generate_204', strategy: consistent-hashing, hidden: true}
+BaseCR: &BaseCR {type: load-balance, tolerance: 100, interval: 300, lazy: true, url: 'http://www.gstatic.com/generate_204', strategy: round-robin, hidden: true}
+BaseCS: &BaseCS {type: url-test, tolerance: 100, interval: 600, lazy: true, url: 'http://www.gstatic.com/generate_204'}
+BaseSmart: &BaseSmart {type: smart, tolerance: 100, interval: 300, lazy: true, url: 'http://www.gstatic.com/generate_204', uselightgbm: true}
+
+# 策略组代理列表模板 - 预定义的代理节点优先级排序
+SelectMR: &SelectMR {type: select, proxies: [智能选择, 故障转移, 香港智能, 新加坡智能, 日本智能, 韩国智能, 美国智能, 台湾智能, 欧洲智能, 冷门自选, 直接连接]}
+SelectAI: &SelectAI {type: fallback, proxies: [新加坡智能, 日本智能, 台湾智能, 韩国智能, 欧洲智能], exclude-filter: "(?i)港|🇭🇰|HK|Hong|HongKong|HKG|澳|澳门|🇲🇴|MO"}
+SelectYL: &SelectYL {type: smart, tolerance: 100, interval: 300, lazy: true, url: 'http://www.gstatic.com/generate_204', uselightgbm: true, proxies: [香港智能, 新加坡智能, 日本智能, 韩国智能, 台湾智能, 美国智能, 欧洲智能, 冷门自选]}
+SelectAV: &SelectAV {type: smart, tolerance: 100, interval: 300, lazy: true, url: 'http://www.gstatic.com/generate_204', uselightgbm: true, proxies: [日本智能, 新加坡智能, 台湾智能, 香港智能]}
+
+# 节点筛选正则表达式 - 基于地理位置和关键词过滤
+FilterHK: &FilterHK '^(?=.*(?i)(港|🇭🇰|HK|Hong|HongKong|HKG))(?!.*((?i)\[?(?!1\.0)\d+(\.\d+)?\s*(x|×|＊|\*|倍率|倍)\]?)).*$'
+FilterSG: &FilterSG '^(?=.*(?i)(坡|🇸🇬|SG|Sing|SIN|XSP))(?!.*((?i)港|🇭🇰|HK|Hong|HongKong|HKG|澳|澳门|🇲🇴|MO|\[?(?!1\.0)\d+(\.\d+)?\s*(x|×|＊|\*|倍率|倍)\]?)).*$'
+FilterJP: &FilterJP '^(?=.*(?i)(日|🇯🇵|JP|Japan|NRT|HND|KIX|CTS|FUK))(?!.*((?i)港|🇭🇰|HK|Hong|HongKong|HKG|澳|澳门|🇲🇴|MO|\[?(?!1\.0)\d+(\.\d+)?\s*(x|×|＊|\*|倍率|倍)\]?)).*$'
+FilterKR: &FilterKR '^(?=.*(?i)(韩|🇰🇷|韓|首尔|南朝鲜|KR|KOR|Korea|South))(?!.*((?i)港|🇭🇰|HK|Hong|HongKong|HKG|澳|澳门|🇲🇴|MO|\[?(?!1\.0)\d+(\.\d+)?\s*(x|×|＊|\*|倍率|倍)\]?)).*$'
+FilterUS: &FilterUS '^(?=.*(?i)(美|🇺🇸|US|USA|JFK|SJC|LAX|ORD|ATL|DFW|SFO|MIA|SEA|IAD))(?!.*((?i)港|🇭🇰|HK|Hong|HongKong|HKG|澳|澳门|🇲🇴|MO|\[?(?!1\.0)\d+(\.\d+)?\s*(x|×|＊|\*|倍率|倍)\]?)).*$'
+FilterTW: &FilterTW '^(?=.*(?i)(台|🇼🇸|🇹🇼|TW|tai|TPE|TSA|KHH))(?!.*((?i)港|🇭🇰|HK|Hong|HongKong|HKG|澳|澳门|🇲🇴|MO|\[?(?!1\.0)\d+(\.\d+)?\s*(x|×|＊|\*|倍率|倍)\]?)).*$'
+FilterEU: &FilterEU '^(?=.*(?i)(奥|比|保|克罗地亚|塞|捷|丹|爱沙|芬|法|德|希|匈|爱尔|意|拉|立|卢|马其它|荷|波|葡|罗|斯洛伐|斯洛文|西|瑞|英|🇧🇪|🇨🇿|🇩🇰|🇫🇮|🇫🇷|🇩🇪|🇮🇪|🇮🇹|🇱🇹|🇱🇺|🇳🇱|🇵🇱|🇸🇪|🇬🇧|CDG|FRA|AMS|MAD|BCN|FCO|MUC|BRU))(?!.*((?i)港|🇭🇰|HK|Hong|HongKong|HKG|澳|澳门|🇲🇴|MO|\[?(?!1\.0)\d+(\.\d+)?\s*(x|×|＊|\*|倍率|倍)\]?)).*$'
+FilterOT: &FilterOT '^(?!.*(DIRECT|直接连接|美|港|坡|台|新|日|韩|奥|比|保|克罗地亚|塞|捷|丹|爱沙|芬|法|德|希|匈|爱尔|意|拉|立|卢|马其它|荷|波|葡|罗|斯洛伐|斯洛文|西|瑞|英|🇭🇰|🇼🇸|🇹🇼|🇸🇬|🇯🇵|🇰🇷|🇺🇸|🇬🇧|🇦🇹|🇧🇪|🇨🇿|🇩🇰|🇫🇮|🇫🇷|🇩🇪|🇮🇪|🇮🇹|🇱🇹|🇱🇺|🇳🇱|🇵🇱|🇸🇪|HK|TW|SG|JP|KR|US|GB|CDG|FRA|AMS|MAD|BCN|FCO|MUC|BRU|HKG|TPE|TSA|KHH|SIN|XSP|NRT|HND|KIX|CTS|FUK|JFK|LAX|ORD|ATL|DFW|SFO|MIA|SEA|IAD|LHR|LGW))(?!.*((?i)港|🇭🇰|HK|Hong|HongKong|HKG|澳|澳门|🇲🇴|MO|\[?(?!1\.0)\d+(\.\d+)?\s*(x|×|＊|\*|倍率|倍)\]?)).*$'
+FilterAL: &FilterAL '^(?!.*(DIRECT|直接连接|群|邀请|返利|循环|官网|客服|网站|网址|获取|订阅|流量|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|国内|地址|频道|无法|说明|使用|提示|特别|访问|支持|教程|关注|更新|作者|加入|USE|USED|TOTAL|EXPIRE|EMAIL|Panel|Channel|Author))(?!.*((?i)港|🇭🇰|HK|Hong|HongKong|HKG|澳|澳门|🇲🇴|MO|\[?(?!1\.0)\d+(\.\d+)?\s*(x|×|＊|\*|倍率|倍)\]?)).*$'
+
+# ==================== 代理提供者 ====================
+# 注意：请提供您的机场订阅链接，每个链接一行，并为每个机场命名，末尾的[优][备]为每个节点添加机场名称前缀，可自定义
+proxy-providers:
+  # 优质订阅源 - 优质节点集合，使用时请修改
+  一毛: {<<: *BaseProvider, url: 'https://ymcb04e23', override: {additional-prefix: '[优] 一毛'}}
+  早安云: {<<: *BaseProvider, url: 'https://arti1e', override: {additional-prefix: '[优] 早安云'}}
+  CM: {<<: *BaseProvider, url: 'https://newf', override: {additional-prefix: '[优] cm'}}
+  超悦: {<<: *BaseProvider, url: 'https://jgvv2', override: {additional-prefix: '[中] 超悦'}}
+  备用服务商: {<<: *BaseProvider, url: '备用订阅源地址', override: {additional-prefix: '[备] '}}
+
+# ==================== 监听器 ====================
+listeners:
+  # Shadowsocks监听器 - 代理节点 玩法：远程连接家庭网络，端口和密码，使用时请修改
+  - {name: SS-IN,  type: shadowsocks, listen: '::', port: 10000, udp: true, password: Xf3#Lp9WqZ, cipher: aes-256-gcm}
+  # Mixed监听器 - 分地区专用端口 玩法：本地浏览器插件或手机APP配置代理，实现分地区访问
+  - {name: MIXED-SG, type: mixed, port: 50000, proxy: 新加坡智能}
+  - {name: MIXED-US, type: mixed, port: 50001, proxy: 美国智能}
+  - {name: MIXED-TW, type: mixed, port: 50002, proxy: 台湾智能}
+  - {name: MIXED-HK, type: mixed, port: 50003, proxy: 香港智能}
+  - {name: MIXED-JP, type: mixed, port: 50004, proxy: 日本智能}
+  - {name: MIXED-KR, type: mixed, port: 50005, proxy: 韩国智能}
+  - {name: MIXED-EU, type: mixed, port: 50006, proxy: 欧洲智能}
+  - {name: MIXED-AL, type: mixed, port: 50007, proxy: 一键智能}
+
+# ==================== 核心配置 ====================
+# 基础配置
+mode: rule
+port: 7890
+socks-port: 7891
+redir-port: 7892
+mixed-port: 7893
+tproxy-port: 7895
+ipv6: true
+allow-lan: true
+unified-delay: true
+tcp-concurrent: true
+log-level: warning
+bind-address: '*'
+find-process-mode: 'always'
+keep-alive-interval: 15
+keep-alive-idle: 600
+
+# 认证配置
+authentication:
+  - mihomo:yyds666
+skip-auth-prefixes:
+  - 192.168.1.0/24
+  - 192.168.31.0/24
+  - 192.168.100.0/24
+  - 127.0.0.1/8
+
+# 实验性功能
+experimental:
+  quic-go-disable-gso: true  
+     
+# 管理面板配置
+external-ui-url: https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip
+external-ui-name: zashboard
+external-ui: ui
+external-controller: 127.0.0.1:9090
+secret: yyds666
+
+# 配置存储
+profile:
+  store-selected: true
+  store-fake-ip: true
+
+# 流量嗅探
+sniffer:
+  enable: true
+  sniff:
+    HTTP:
+      ports: [80, 8080-8880]
+      override-destination: true
+    TLS:
+      ports: [443, 8443]
+    QUIC:
+      ports: [443, 8443]
+  skip-domain:
+    - "Mijia Cloud"
+    - "+.push.apple.com"
+
+# TUN模式配置
+tun:
+  enable: false
+  stack: mixed
+  dns-hijack:
+    - "any:53"
+    - "tcp://any:53"
+  auto-route: true
+  auto-redirect: true
+  auto-detect-interface: true
+
+hosts:
+  miwifi.com: 192.168.31.2
+  services.googleapis.cn: services.googleapis.com
+  cn.bing.com: global.bing.com
+  dns.alidns.com: [223.5.5.5, 223.6.6.6, 2400:3200::1, 2400:3200:baba::1]
+  doh.pub: [1.12.12.12, 1.12.12.21, 120.53.53.53]
+  dns.google: [8.8.8.8, 8.8.4.4, 2001:4860:4860::8888, 2001:4860:4860::8844]
+  cloudflare-dns.com: [1.1.1.1, 1.0.0.1, 2606:4700:4700::1111, 2606:4700:4700::1001]
+    
+# DNS配置
+dns:
+  enable: true
+  ipv6: false          # 建议关闭：国内移动网络 IPv6 往往不稳定，关闭后网页首屏开启更快
+  use-hosts: true
+  enhanced-mode: fake-ip
+  listen: 0.0.0.0:1053
+  respect-rules: true
+  prefer-h3: true      # 开启 H3 加速加密查询
+  
+  fake-ip-range: 198.18.0.1/16
+  fake-ip-filter:
+    - "geosite:cn"      # 核心：国内域名不走 Fake-IP，直接由系统解析，秒开且省电
+    - "rule-set:direct"
+    - "geosite:private"
+    - "geosite:apple-cn"
+    - "+.msftconnecttest.com"
+    - "+.msftncsi.com"
+    - "pool.ntp.org"
+    - "*.lan"
+    - "*.local"
+    - "localsend.org"     # 文件传输
+    - "+.localsend.org"
+
+  # 基础 DNS：仅用于解析 DoH 的域名，必须是纯 IP
+  default-nameserver:
+    - 223.5.5.5
+    - 119.29.29.29
+
+  # 代理服务器解析：防止节点域名解析不出导致“节点超时”
+  proxy-server-nameserver:
+    - https://dns.alidns.com/dns-query
+    - https://doh.pub/dns-query
+
+  # 直连域名解析：命中 DIRECT 规则的走这里
+  direct-nameserver:
+    - https://dns.alidns.com/dns-query
+    - https://doh.pub/dns-query
+
+  # 默认解析：未命中以上规则的（通常是代理域名）走这里
+  nameserver:
+    - https://dns.google/dns-query
+    - https://dns.cloudflare.com/dns-query
+
+  nameserver-policy:
+    "geosite:cn":
+      - https://dns.alidns.com/dns-query
+      - https://doh.pub/dns-query
+
+    "domain-suffix:openai.com":
+      - https://1.1.1.1/dns-query
+      - https://8.8.8.8/dns-query
+    "domain-suffix:chatgpt.com":
+      - https://1.1.1.1/dns-query
+      - https://8.8.8.8/dns-query
+    "domain-suffix:auth0.com":
+      - https://1.1.1.1/dns-query
+      - https://8.8.8.8/dns-query
+    "domain-suffix:oaistatic.com":
+      - https://1.1.1.1/dns-query
+      - https://8.8.8.8/dns-query
+    "domain-suffix:oaiusercontent.com":
+      - https://1.1.1.1/dns-query
+      - https://8.8.8.8/dns-query
+
+
+# ==================== 代理策略组 ====================
+proxy-groups:
+  # ==================== 主要策略组 ====================
+  - {name: 默认代理,     <<: *SelectMR, icon: https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/adjust.svg}
+  - {name: 智能选择,     <<: *BaseSmart, proxies: [香港智能, 新加坡智能, 日本智能, 台湾智能, 韩国智能, 美国智能, 欧洲智能, 冷门自选], icon: https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/speed.svg}
+  - {name: 故障转移,     <<: *BaseZY, proxies: [香港智能, 新加坡智能, 日本智能, 台湾智能, 韩国智能, 美国智能, 欧洲智能, 冷门自选], icon: https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/balance.svg}
+
+# ====================
+  - {name: 全球手动,     type: select, include-all: true, filter: *FilterAL, icon: https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/link.svg}
+
+  # ==================== 地区策略组 ====================
+  # 地理策略层 - Smart智能选择，政策权重数值越大优先级越高，修改为关键词节点，比如 优:2;中:1;备:0.5，默认为1，优>中>备，使用时请修改
+  - {name: 香港智能,  <<: *BaseSmart, filter: *FilterHK, include-all: true, policy-priority: '优:2;中:1;备:0.2', icon: https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/flags/hk.svg}
+  - {name: 台湾智能,  <<: *BaseSmart, filter: *FilterTW, include-all: true, policy-priority: '优:2;中:1;备:0.2', icon: https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/flags/tw.svg}
+  - {name: 日本智能,  <<: *BaseSmart, filter: *FilterJP, include-all: true, policy-priority: '优:2;中:1;备:0.2', icon: https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/flags/jp.svg}
+  - {name: 新加坡智能,  <<: *BaseSmart, filter: *FilterSG, include-all: true, policy-priority: '优:2;中:1;备:0.2', icon: https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/flags/sg.svg}
+  - {name: 韩国智能,  <<: *BaseSmart, filter: *FilterKR, include-all: true, policy-priority: '优:2;中:1;备:0.2', icon: https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/flags/kr.svg}
+  - {name: 美国智能,  <<: *BaseSmart, filter: *FilterUS, include-all: true, policy-priority: '优:2;中:1;备:0.2', icon: https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/flags/us.svg}
+  - {name: 欧洲智能,  <<: *BaseSmart, filter: *FilterEU, include-all: true, policy-priority: '优:2;中:1;备:0.2', icon: https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/flags/eu.svg}
+
+  # ==================== 商业服务 ====================
+  - {name: 人工智能,     <<: *SelectAI, icon: https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/chatgpt.svg}
+  - {name: 谷歌服务,     <<: *SelectAI, icon: https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/google.svg}
+  - {name: 苹果服务,     <<: *SelectYL, icon: https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/apple.svg}
+
+  # ==================== 媒体服务 ====================
+  - {name: TikTok,     <<: *SelectYL, icon: https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/tiktok.svg}
+  - {name: 油管视频,     <<: *SelectYL, icon: https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/youtube.svg}
+  - {name: 奈飞视频,     <<: *SelectYL, icon: https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/netflix.svg}
+  - {name: PAV,     <<: *SelectAV, icon: https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/claude.svg}
+
+  # ==================== 社交平台 ====================
+  - {name: 电报消息,     <<: *SelectYL, icon: https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/telegram.svg}
+
+
+  # ==================== 其他策略组 ====================
+  - {name: 冷门自选,     type: select, include-all: true, filter: *FilterOT, icon: https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/fish.svg}
+  - {name: 兜底流量,     <<: *SelectYL, icon: https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/ambulance.svg}
+  - {name: 直接连接,     type: select, proxies: [DIRECT], hidden: true, icon: https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/link.svg}
+  
+# ==================== 规则路由 ====================
+rules:
+  # 1. 优先放行 LocalSend 端口
+  - DST-PORT,53317,DIRECT
+
+  # 1. 拦截规则 (最优先，广告和追踪必须死在最前面)
+  - RULE-SET,reject,REJECT
+  - AND,((DST-PORT,443),(NETWORK,UDP)),REJECT
+
+  # 2. AI 专项 (ChatGPT 对 IP 和 DNS 极其敏感，必须置顶)
+  - DOMAIN-SUFFIX,chatgpt.com,人工智能
+  - DOMAIN-SUFFIX,openai.com,人工智能
+  - DOMAIN-SUFFIX,auth0.com,人工智能
+  - DOMAIN-SUFFIX,gemini.google.com,人工智能
+  - DOMAIN-KEYWORD,generativelanguage,人工智能
+  - RULE-SET,AI,人工智能
+  - RULE-SET,google,谷歌服务
+
+  # 3. 特定代理 (Telegram, YouTube, TikTok, Netflix 等)
+  # 重点：这些规则必须在“国内分流”之前，防止被误判为直连
+  - RULE-SET,telegramcidr,电报消息
+  - RULE-SET,TikTok,TikTok
+  - RULE-SET,Netflix,奈飞视频
+  - RULE-SET,YouTube,油管视频
+  - RULE-SET,google,谷歌服务
+  - RULE-SET,apple,苹果服务
+  - RULE-SET,AV,PAV
+
+  # 4. 基础直连 (局域网、本地设备)
+  - RULE-SET,private,直接连接
+  - RULE-SET,direct,直接连接
+
+  # 5. 国内流量分流 (作为“直连”的最后一道大网)
+  # no-resolve 必带，防止 DNS 劫持干扰
+  - RULE-SET,cncidr,直接连接,no-resolve
+  - GEOIP,CN,直接连接,no-resolve
+
+  # 6. 通用代理规则 (GfWList 等)
+  - RULE-SET,proxy,默认代理
+
+  # 7. 最后的兜底
+  - MATCH,兜底流量
+
+# ==================== 规则集 ====================
+
+# 规则提供者
+rule-providers:  
+  reject:
+    type: http
+    behavior: domain
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/reject.txt"
+    path: ./ruleset/reject.yaml
+    interval: 86400
+
+  AI: 
+    type: http
+    behavior: domain
+    url: "https://fastly.jsdelivr.net/gh/xiaolin-007/clash@main/rule/AI.txt"
+    path: ./ruleset/xiaolin-007/AI.yaml
+    interval: 86400
+
+  Netflix:
+    type: http
+    behavior: domain
+    url: "https://fastly.jsdelivr.net/gh/xiaolin-007/clash@main/rule/Netflix.txt"
+    path: ./ruleset/xiaolin-007/Netflix.yaml
+    interval: 86400
+
+  YouTube:
+    type: http
+    behavior: domain
+    url: "https://fastly.jsdelivr.net/gh/xiaolin-007/clash@main/rule/YouTube.txt"
+    path: ./ruleset/xiaolin-007/YouTube.yaml
+    interval: 86400
+
+  TikTok:
+    type: http
+    behavior: domain
+    url: "https://fastly.jsdelivr.net/gh/xiaolin-007/clash@main/rule/TikTok.txt"
+    path: ./ruleset/xiaolin-007/TikTok.yaml
+    interval: 86400
+
+  apple:
+    type: http
+    behavior: domain
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/apple.txt"
+    path: ./ruleset/apple.yaml
+    interval: 86400
+
+  google:
+    type: http
+    behavior: domain
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/google.txt"
+    path: ./ruleset/google.yaml
+    interval: 86400
+
+  proxy:
+    type: http
+    behavior: domain
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/proxy.txt"
+    path: ./ruleset/proxy.yaml
+    interval: 86400
+
+  direct:
+    type: http
+    behavior: domain
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/direct.txt"
+    path: ./ruleset/direct.yaml
+    interval: 86400
+
+  private:
+    type: http
+    behavior: domain
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/private.txt"
+    path: ./ruleset/private.yaml
+    interval: 86400
+
+  gfw:
+    type: http
+    behavior: domain
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/gfw.txt"
+    path: ./ruleset/gfw.yaml
+    interval: 86400
+
+  tld-not-cn:
+    type: http
+    behavior: domain
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/tld-not-cn.txt"
+    path: ./ruleset/tld-not-cn.yaml
+    interval: 86400
+
+  telegramcidr:
+    type: http
+    behavior: ipcidr
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/telegramcidr.txt"
+    path: ./ruleset/telegramcidr.yaml
+    interval: 86400
+
+  AV:
+    type: http
+    behavior: classical
+    url: "https://raw.githubusercontent.com/podao/Clash-jb/refs/heads/main/guizeji/av.txt"
+    path: ./ruleset/av.yaml
+    interval: 86400
+
+  cncidr:
+    type: http
+    behavior: ipcidr
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/cncidr.txt"
+    path: ./ruleset/cncidr.yaml
+    interval: 86400
+
+  lancidr:
+    type: http
+    behavior: ipcidr
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/lancidr.txt"
+    path: ./ruleset/lancidr.yaml
+    interval: 86400
+
+  applications:
+    type: http
+    behavior: classical
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/applications.txt"
+    path: ./ruleset/applications.yaml
+    interval: 86400
+
+# ==================== EOF ====================
