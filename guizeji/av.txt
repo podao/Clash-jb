@@ -6,7 +6,7 @@ payload:
   - DOMAIN-SUFFIX,xhamster.com
   - DOMAIN-SUFFIX,youporn.com
   - DOMAIN-SUFFIX,91porn.com
-  - DOMAIN-KEYWORD,missav
+  - DOMAIN-KEYWORD,missav         # KEYWORD匹配所有包含missav的域名
   - DOMAIN-KEYWORD,njavtv
   - DOMAIN-KEYWORD,123av
   - DOMAIN-KEYWORD,jable
