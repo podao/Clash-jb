@@ -49,10 +49,10 @@ FilterAL: &FilterAL '^(?!.*(DIRECT|直接连接|群|邀请|返利|循环|官网|
 # 注意：请提供您的机场订阅链接，每个链接一行，并为每个机场命名，末尾的[优][备]为每个节点添加机场名称前缀，可自定义
 proxy-providers:
   # 优质订阅源 - 优质节点集合，使用时请修改
-  一毛: {<<: *BaseProvider, url: 'https://ymcb04e23', override: {additional-prefix: '[优] 一毛'}}
-  早安云: {<<: *BaseProvider, url: 'https://arti1e', override: {additional-prefix: '[优] 早安云'}}
-  CM: {<<: *BaseProvider, url: 'https://newf', override: {additional-prefix: '[优] cm'}}
-  超悦: {<<: *BaseProvider, url: 'https://jgvv2', override: {additional-prefix: '[中] 超悦'}}
+  一毛: {<<: *BaseProvider, url: 'https://y23', override: {additional-prefix: '[优] 一毛'}}
+  早安云: {<<: *BaseProvider, url: 'https://artie', override: {additional-prefix: '[优] 早安云'}}
+  CM: {<<: *BaseProvider, url: 'https://nf', override: {additional-prefix: '[优] cm'}}
+  超悦: {<<: *BaseProvider, url: 'https://j2', override: {additional-prefix: '[中] 超悦'}}
   备用服务商: {<<: *BaseProvider, url: '备用订阅源地址', override: {additional-prefix: '[备] '}}
 
 # ==================== 监听器 ====================
@@ -129,14 +129,14 @@ sniffer:
 
 # TUN模式配置
 tun:
-  enable: false
-  stack: mixed
+  enable: true
+  stack: mixed              # 推荐 mixed，性能与兼容性的平衡点
   dns-hijack:
     - "any:53"
     - "tcp://any:53"
-  auto-route: true
-  auto-redirect: true
-  auto-detect-interface: true
+  auto-route: true          # Windows 接管流量的核心
+  auto-detect-interface: true # 防止流量环路，必开
+  strict-route: true        # 建议开启：防止流量绕过 TUN 泄漏
 
 hosts:
   miwifi.com: 192.168.31.2
