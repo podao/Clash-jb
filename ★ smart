@@ -30,7 +30,7 @@ BaseSmart: &BaseSmart {type: smart, tolerance: 150, interval: 300, lazy: true, u
 
 # 策略组代理列表模板 - 预定义的代理节点优先级排序
 SelectMR: &SelectMR {type: select, proxies: [智能选择, 故障转移, 香港智能, 新加坡智能, 日本智能, 韩国智能, 美国智能, 台湾智能, 欧洲智能, 冷门自选, 直接连接]}
-SelectAI: &SelectAI {type: fallback, proxies: [新加坡智能, 日本智能, 台湾智能, 韩国智能, 欧洲智能], exclude-filter: "(?i)港|🇭🇰|HK|Hong|HongKong|HKG|澳|澳门|🇲🇴|MO"}
+SelectAI: &SelectAI {type: fallback, proxies: [日本智能, 新加坡智能, 台湾智能, 韩国智能], exclude-filter: "(?i)港|🇭🇰|HK|Hong|HongKong|HKG|澳|澳门|🇲🇴|MO"}
 SelectYL: &SelectYL {type: smart, tolerance: 150, interval: 300, lazy: true, url: 'http://www.gstatic.com/generate_204', uselightgbm: true, proxies: [香港智能, 新加坡智能, 日本智能, 韩国智能, 台湾智能, 美国智能, 欧洲智能, 冷门自选]}
 SelectAV: &SelectAV {type: smart, tolerance: 150, interval: 300, lazy: true, url: 'http://www.gstatic.com/generate_204', uselightgbm: true, proxies: [日本智能, 新加坡智能, 台湾智能, 香港智能]}
 
@@ -49,10 +49,10 @@ FilterAL: &FilterAL '^(?!.*(DIRECT|直接连接|群|邀请|返利|循环|官网|
 # 注意：请提供您的机场订阅链接，每个链接一行，并为每个机场命名，末尾的[优][备]为每个节点添加机场名称前缀，可自定义
 proxy-providers:
   # 优质订阅源 - 优质节点集合，使用时请修改
-  一毛: {<<: *BaseProvider, url: 'https://ym3', override: {additional-prefix: '[优] 一毛'}}
-  早安云: {<<: *BaseProvider, url: 'https://artie', override: {additional-prefix: '[优] 早安云'}}
-  CM: {<<: *BaseProvider, url: 'https://nf', override: {additional-prefix: '[优] cm'}}
-  超悦: {<<: *BaseProvider, url: 'https://j32', override: {additional-prefix: '[中] 超悦'}}
+  一毛: {<<: *BaseProvider, url: 'https://3', override: {additional-prefix: '[优] 一毛'}}
+  早安云: {<<: *BaseProvider, url: 'https://', override: {additional-prefix: '[优] 早安云'}}
+  CM: {<<: *BaseProvider, url: 'https://', override: {additional-prefix: '[优] cm'}}
+  超悦: {<<: *BaseProvider, url: 'https://', override: {additional-prefix: '[中] 超悦'}}
   备用服务商: {<<: *BaseProvider, url: '备用订阅源地址', override: {additional-prefix: '[备] '}}
 
 # ==================== 监听器 ====================
@@ -77,7 +77,7 @@ socks-port: 7891
 redir-port: 7892
 mixed-port: 7893
 tproxy-port: 7895
-ipv6: true
+ipv6: false
 allow-lan: true
 unified-delay: true
 tcp-concurrent: true
