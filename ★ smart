@@ -30,30 +30,30 @@ BaseSmart: &BaseSmart {type: smart, tolerance: 150, interval: 300, lazy: true, u
 
 # 策略组代理列表模板 - 预定义的代理节点优先级排序
 SelectMR: &SelectMR {type: select, proxies: [智能选择, 故障转移, 香港智能, 新加坡智能, 日本智能, 韩国智能, 美国智能, 台湾智能, 欧洲智能, 冷门自选, 直接连接]}
-SelectAI: &SelectAI {type: fallback, proxies: [日本智能, 新加坡智能, 台湾智能, 韩国智能], exclude-filter: "(?i)港|🇭🇰|HK|Hong|HongKong|HKG|澳|澳门|🇲🇴|MO"}
+SelectAI: &SelectAI {type: fallback, proxies: [日本智能, 新加坡智能, 台湾智能, 韩国智能], exclude-filter: "(?i)(港|🇭🇰|HK|HongKong|HKG|澳门|🇲🇴)"}
 SelectYL: &SelectYL {type: smart, tolerance: 150, interval: 300, lazy: true, url: 'http://www.gstatic.com/generate_204', uselightgbm: true, proxies: [香港智能, 新加坡智能, 日本智能, 韩国智能, 台湾智能, 美国智能, 欧洲智能, 冷门自选]}
-SelectTK: &SelectTK {type: smart, tolerance: 150, interval: 300, lazy: true, url: 'http://www.gstatic.com/generate_204', uselightgbm: true, proxies: [新加坡智能, 日本智能, 韩国智能, 台湾智能, 美国智能]}
+SelectTK: &SelectTK {type: smart, tolerance: 150, interval: 300, lazy: true, url: 'http://www.gstatic.com/generate_204', uselightgbm: true, proxies: [新加坡智能, 日本智能, 韩国智能, 台湾智能, 美国智能], exclude-filter: "(?i)(印度|India|🇮🇳)"}
 SelectAV: &SelectAV {type: smart, tolerance: 150, interval: 300, lazy: true, url: 'http://www.gstatic.com/generate_204', uselightgbm: true, proxies: [日本智能, 新加坡智能, 台湾智能, 香港智能]}
 
 # 节点筛选正则表达式 - 基于地理位置和关键词过滤
-FilterHK: &FilterHK '^(?=.*(?i)(港|🇭🇰|HK|Hong|HongKong|HKG))(?!.*((?i)\[?(?!1\.0)\d+(\.\d+)?\s*(x|×|＊|\*|倍率|倍)\]?)).*$'
-FilterSG: &FilterSG '^(?=.*(?i)(坡|🇸🇬|SG|Sing|SIN|XSP))(?!.*((?i)港|🇭🇰|HK|Hong|HongKong|HKG|澳|澳门|🇲🇴|MO|\[?(?!1\.0)\d+(\.\d+)?\s*(x|×|＊|\*|倍率|倍)\]?)).*$'
-FilterJP: &FilterJP '^(?=.*(?i)(日|🇯🇵|JP|Japan|NRT|HND|KIX|CTS|FUK))(?!.*((?i)港|🇭🇰|HK|Hong|HongKong|HKG|澳|澳门|🇲🇴|MO|\[?(?!1\.0)\d+(\.\d+)?\s*(x|×|＊|\*|倍率|倍)\]?)).*$'
-FilterKR: &FilterKR '^(?=.*(?i)(韩|🇰🇷|韓|首尔|南朝鲜|KR|KOR|Korea|South))(?!.*((?i)港|🇭🇰|HK|Hong|HongKong|HKG|澳|澳门|🇲🇴|MO|\[?(?!1\.0)\d+(\.\d+)?\s*(x|×|＊|\*|倍率|倍)\]?)).*$'
-FilterUS: &FilterUS '^(?=.*(?i)(美|🇺🇸|US|USA|JFK|SJC|LAX|ORD|ATL|DFW|SFO|MIA|SEA|IAD))(?!.*((?i)港|🇭🇰|HK|Hong|HongKong|HKG|澳|澳门|🇲🇴|MO|\[?(?!1\.0)\d+(\.\d+)?\s*(x|×|＊|\*|倍率|倍)\]?)).*$'
-FilterTW: &FilterTW '^(?=.*(?i)(台|🇼🇸|🇹🇼|TW|tai|TPE|TSA|KHH))(?!.*((?i)港|🇭🇰|HK|Hong|HongKong|HKG|澳|澳门|🇲🇴|MO|\[?(?!1\.0)\d+(\.\d+)?\s*(x|×|＊|\*|倍率|倍)\]?)).*$'
-FilterEU: &FilterEU '^(?=.*(?i)(奥|比|保|克罗地亚|塞|捷|丹|爱沙|芬|法|德|希|匈|爱尔|意|拉|立|卢|马其它|荷|波|葡|罗|斯洛伐|斯洛文|西|瑞|英|🇧🇪|🇨🇿|🇩🇰|🇫🇮|🇫🇷|🇩🇪|🇮🇪|🇮🇹|🇱🇹|🇱🇺|🇳🇱|🇵🇱|🇸🇪|🇬🇧|CDG|FRA|AMS|MAD|BCN|FCO|MUC|BRU))(?!.*((?i)港|🇭🇰|HK|Hong|HongKong|HKG|澳|澳门|🇲🇴|MO|\[?(?!1\.0)\d+(\.\d+)?\s*(x|×|＊|\*|倍率|倍)\]?)).*$'
-FilterOT: &FilterOT '^(?!.*(DIRECT|直接连接|美|港|坡|台|新|日|韩|奥|比|保|克罗地亚|塞|捷|丹|爱沙|芬|法|德|希|匈|爱尔|意|拉|立|卢|马其它|荷|波|葡|罗|斯洛伐|斯洛文|西|瑞|英|🇭🇰|🇼🇸|🇹🇼|🇸🇬|🇯🇵|🇰🇷|🇺🇸|🇬🇧|🇦🇹|🇧🇪|🇨🇿|🇩🇰|🇫🇮|🇫🇷|🇩🇪|🇮🇪|🇮🇹|🇱🇹|🇱🇺|🇳🇱|🇵🇱|🇸🇪|HK|TW|SG|JP|KR|US|GB|CDG|FRA|AMS|MAD|BCN|FCO|MUC|BRU|HKG|TPE|TSA|KHH|SIN|XSP|NRT|HND|KIX|CTS|FUK|JFK|LAX|ORD|ATL|DFW|SFO|MIA|SEA|IAD|LHR|LGW))(?!.*((?i)港|🇭🇰|HK|Hong|HongKong|HKG|澳|澳门|🇲🇴|MO|\[?(?!1\.0)\d+(\.\d+)?\s*(x|×|＊|\*|倍率|倍)\]?)).*$'
-FilterAL: &FilterAL '^(?!.*(DIRECT|直接连接|群|邀请|返利|循环|官网|客服|网站|网址|获取|订阅|流量|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|国内|地址|频道|无法|说明|使用|提示|特别|访问|支持|教程|关注|更新|作者|加入|USE|USED|TOTAL|EXPIRE|EMAIL|Panel|Channel|Author))(?!.*((?i)港|🇭🇰|HK|Hong|HongKong|HKG|澳|澳门|🇲🇴|MO|\[?(?!1\.0)\d+(\.\d+)?\s*(x|×|＊|\*|倍率|倍)\]?)).*$'
+FilterHK: &FilterHK '^(?=.*(?i)(港|🇭🇰|HK|HongKong|HKG))(?!.*((?i)\[?(?!1\.0)\d+(\.\d+)?\s*(x|×|＊|\*|倍率|倍)\]?)).*$'
+FilterSG: &FilterSG '^(?=.*(?i)(坡|🇸🇬|SG|Sing|SIN|XSP))(?!.*((?i)港|🇭🇰|HK|HongKong|HKG|澳门|🇲🇴|\[?(?!1\.0)\d+(\.\d+)?\s*(x|×|＊|\*|倍率|倍)\]?)).*$'
+FilterJP: &FilterJP '^(?=.*(?i)(日|🇯🇵|JP|Japan|NRT|HND|KIX|CTS|FUK))(?!.*((?i)港|🇭🇰|HK|HongKong|HKG|澳门|🇲🇴|\[?(?!1\.0)\d+(\.\d+)?\s*(x|×|＊|\*|倍率|倍)\]?)).*$'
+FilterKR: &FilterKR '^(?=.*(?i)(韩|🇰🇷|韓|首尔|南朝鲜|KR|KOR|Korea|South))(?!.*((?i)港|🇭🇰|HK|HongKong|HKG|澳门|🇲🇴|\[?(?!1\.0)\d+(\.\d+)?\s*(x|×|＊|\*|倍率|倍)\]?)).*$'
+FilterUS: &FilterUS '^(?=.*(?i)(美|🇺🇸|US|USA|JFK|SJC|LAX|ORD|ATL|DFW|SFO|MIA|SEA|IAD))(?!.*((?i)港|🇭🇰|HK|HongKong|HKG|澳门|🇲🇴|\[?(?!1\.0)\d+(\.\d+)?\s*(x|×|＊|\*|倍率|倍)\]?)).*$'
+FilterTW: &FilterTW '^(?=.*(?i)(台|🇼🇸|🇹🇼|TW|tai|TPE|TSA|KHH))(?!.*((?i)港|🇭🇰|HK|HongKong|HKG|澳门|🇲🇴|\[?(?!1\.0)\d+(\.\d+)?\s*(x|×|＊|\*|倍率|倍)\]?)).*$'
+FilterEU: &FilterEU '^(?=.*(?i)(奥|比|保|克罗地亚|塞|捷|丹|爱沙|芬|法|德|希|匈|爱尔|意|拉|立|卢|马其它|荷|波|葡|罗|斯洛伐|斯洛文|西|瑞|英|🇧🇪|🇨🇿|🇩🇰|🇫🇮|🇫🇷|🇩🇪|🇮🇪|🇮🇹|🇱🇹|🇱🇺|🇳🇱|🇵🇱|🇸🇪|🇬🇧|CDG|FRA|AMS|MAD|BCN|FCO|MUC|BRU))(?!.*((?i)港|🇭🇰|HK|HongKong|HKG|澳门|🇲🇴|\[?(?!1\.0)\d+(\.\d+)?\s*(x|×|＊|\*|倍率|倍)\]?)).*$'
+FilterOT: &FilterOT '^(?!.*(DIRECT|直接连接|美|港|坡|台|新|日|韩|奥|比|保|克罗地亚|塞|捷|丹|爱沙|芬|法|德|希|匈|爱尔|意|拉|立|卢|马其它|荷|波|葡|罗|斯洛伐|斯洛文|西|瑞|英|🇭🇰|🇼🇸|🇹🇼|🇸🇬|🇯🇵|🇰🇷|🇺🇸|🇬🇧|🇦🇹|🇧🇪|🇨🇿|🇩🇰|🇫🇮|🇫🇷|🇩🇪|🇮🇪|🇮🇹|🇱🇹|🇱🇺|🇳🇱|🇵🇱|🇸🇪|HK|TW|SG|JP|KR|US|GB|CDG|FRA|AMS|MAD|BCN|FCO|MUC|BRU|HKG|TPE|TSA|KHH|SIN|XSP|NRT|HND|KIX|CTS|FUK|JFK|LAX|ORD|ATL|DFW|SFO|MIA|SEA|IAD|LHR|LGW))(?!.*((?i)港|🇭🇰|HK|HongKong|HKG|澳门|🇲🇴|\[?(?!1\.0)\d+(\.\d+)?\s*(x|×|＊|\*|倍率|倍)\]?)).*$'
+FilterAL: &FilterAL '^(?!.*(DIRECT|直接连接|群|邀请|返利|循环|官网|客服|网站|网址|获取|订阅|流量|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|国内|地址|频道|无法|说明|使用|提示|特别|访问|支持|教程|关注|更新|作者|加入|USE|USED|TOTAL|EXPIRE|EMAIL|Panel|Channel|Author))(?!.*((?i)港|🇭🇰|HK|HongKong|HKG|澳门|🇲🇴|\[?(?!1\.0)\d+(\.\d+)?\s*(x|×|＊|\*|倍率|倍)\]?)).*$'
 
 # ==================== 代理提供者 ====================
 # 注意：请提供您的机场订阅链接，每个链接一行，并为每个机场命名，末尾的[优][备]为每个节点添加机场名称前缀，可自定义
 proxy-providers:
   # 优质订阅源 - 优质节点集合，使用时请修改
-  一毛: {<<: *BaseProvider, url: 'https://y3', override: {additional-prefix: '[优] 一毛'}}
-  早安云: {<<: *BaseProvider, url: 'https://ae', override: {additional-prefix: '[优] 早安云'}}
-  CM: {<<: *BaseProvider, url: 'https://nf', override: {additional-prefix: '[优] cm'}}
-  超悦: {<<: *BaseProvider, url: 'https://j2', override: {additional-prefix: '[中] 超悦'}}
+  一毛: {<<: *BaseProvider, url: 'https://y23', override: {additional-prefix: '[优] 一毛'}}
+  早安云: {<<: *BaseProvider, url: 'https://a1e', override: {additional-prefix: '[优] 早安云'}}
+  CM: {<<: *BaseProvider, url: 'https://nef', override: {additional-prefix: '[优] cm'}}
+  超悦: {<<: *BaseProvider, url: 'https://jg432', override: {additional-prefix: '[中] 超悦'}}
   备用服务商: {<<: *BaseProvider, url: '备用订阅源地址', override: {additional-prefix: '[备] '}}
 
 # ==================== 监听器 ====================
@@ -250,7 +250,7 @@ proxy-groups:
 
   # ==================== 其他策略组 ====================
   - {name: 冷门自选,     type: select, include-all: true, filter: *FilterOT, icon: https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/fish.svg}
-  - {name: 兜底流量,     <<: *SelectYL, icon: https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/ambulance.svg}
+  - {name: 兜底流量,     <<: *SelectTK, icon: https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/ambulance.svg}
   - {name: 直接连接,     type: select, proxies: [DIRECT], hidden: true, icon: https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/link.svg}
   
 # ==================== 规则路由 ====================
@@ -271,10 +271,9 @@ rules:
   - RULE-SET,AI,人工智能
   - RULE-SET,google,谷歌服务
 
-  # 3. 特定代理 (Telegram, YouTube, TikTok, Netflix 等)
-  # 重点：这些规则必须在“国内分流”之前，防止被误判为直连
-  - RULE-SET,telegramcidr,电报消息
+  # 3. 特定代理 
   - RULE-SET,TikTok,TikTok
+  - RULE-SET,telegramcidr,电报消息
   - RULE-SET,Netflix,奈飞视频
   - RULE-SET,YouTube,油管视频
   - RULE-SET,google,谷歌服务
@@ -331,7 +330,7 @@ rule-providers:
   TikTok:
     type: http
     behavior: domain
-    url: "https://fastly.jsdelivr.net/gh/xiaolin-007/clash@main/rule/TikTok.txt"
+    url: "https://raw.githubusercontent.com/podao/Clash-jb/refs/heads/main/guizeji/TikTok"
     path: ./ruleset/xiaolin-007/TikTok.yaml
     interval: 86400
 
