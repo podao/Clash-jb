@@ -8,4 +8,5 @@ payload:
   - DOMAIN-SUFFIX,tik-tokapi.com
   - DOMAIN-SUFFIX,tiktok.com
   - DOMAIN-SUFFIX,tiktokcdn.com
+  - DOMAIN-KEYWORD,tiktokv,TikTok      # 所有包含 tiktokv 的域名
   - DOMAIN-SUFFIX,tiktokv.com
