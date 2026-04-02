@@ -52,7 +52,7 @@ proxy-providers:
   # 优质订阅源 - 优质节点集合，使用时请修改
   一毛: {<<: *BaseProvider, url: 'https://3', override: {additional-prefix: '[优] 一毛'}}
   早安云: {<<: *BaseProvider, url: 'https://e', override: {additional-prefix: '[优] 早安云'}}
-  CM: {<<: *BaseProvider, url: 'https://nf', override: {additional-prefix: '[优] cm'}}
+  CM: {<<: *BaseProvider, url: 'https://f', override: {additional-prefix: '[优] cm'}}
   备用服务商: {<<: *BaseProvider, url: '备用订阅源地址', override: {additional-prefix: '[备] '}}
 
 # ==================== 监听器 ====================
@@ -322,7 +322,7 @@ rule-providers:
   AI: 
     type: http
     behavior: classical
-    url: "https://raw.githubusercontent.com/podao/Clash-jb/refs/heads/main/guizeji/AI.txt"
+    url: "https://cdn.jsdelivr.net/gh/xiaolin-007/clash@main/rule/AI.txt"
     path: ./ruleset/xiaolin-007/AI.yaml
     interval: 86400
 
