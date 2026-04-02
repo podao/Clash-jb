@@ -13,6 +13,7 @@ payload:
   - DOMAIN,gemini.google.com
   - DOMAIN,generativelanguage.googleapis.com
   - DOMAIN,sydney.bing.com
+  - DOMAIN-SUFFIX,android.chat.openai
   - DOMAIN-SUFFIX,ai.azure.com
   - DOMAIN-SUFFIX,anthropic.com
   - DOMAIN-SUFFIX,auth0.com
