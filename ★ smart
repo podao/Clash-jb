@@ -30,7 +30,7 @@ BaseSmart: &BaseSmart {type: smart, tolerance: 150, interval: 300, lazy: true, u
 
 # 策略组代理列表模板 - 预定义的代理节点优先级排序
 SelectMR: &SelectMR {type: select, proxies: [智能选择, 故障转移, 香港智能, 新加坡智能, 日本智能, 韩国智能, 美国智能, 台湾智能, 欧洲智能, 冷门自选, 直接连接]}
-SelectAI: &SelectAI {type: fallback, proxies: [日本智能, 新加坡智能, 台湾智能, 韩国智能], exclude-filter: "(?i)(港|🇭🇰|HK|HongKong|HKG|澳门|🇲🇴)"}
+SelectAI: &SelectAI {type: fallback, proxies: [日本智能, 新加坡智能, 台湾智能, 韩国智能], exclude-filter: "(?i)(香港|🇭🇰|HK|HongKong|HKG|澳门|🇲🇴|美国|🇺🇸|US|USA)"}
 SelectYL: &SelectYL {type: smart, tolerance: 150, interval: 300, lazy: true, url: 'http://www.gstatic.com/generate_204', uselightgbm: true, proxies: [香港智能, 新加坡智能, 日本智能, 韩国智能, 台湾智能, 美国智能, 欧洲智能, 冷门自选]}
 SelectTK: &SelectTK {type: smart, tolerance: 150, interval: 300, lazy: true, url: 'http://www.gstatic.com/generate_204', uselightgbm: true, proxies: [新加坡智能, 日本智能, 韩国智能, 台湾智能, 美国智能], exclude-filter: "(?i)(印度|India|🇮🇳)"}
 SelectAV: &SelectAV {type: smart, tolerance: 150, interval: 300, lazy: true, url: 'http://www.gstatic.com/generate_204', uselightgbm: true, proxies: [日本智能, 新加坡智能, 台湾智能, 香港智能]}
@@ -50,10 +50,10 @@ FilterAL: &FilterAL '^(?!.*(DIRECT|直接连接|群|邀请|返利|循环|官网|
 # 注意：请提供您的机场订阅链接，每个链接一行，并为每个机场命名，末尾的[优][备]为每个节点添加机场名称前缀，可自定义
 proxy-providers:
   # 优质订阅源 - 优质节点集合，使用时请修改
-  一毛: {<<: *BaseProvider, url: 'https://23', override: {additional-prefix: '[优] 一毛'}}
-  早安云: {<<: *BaseProvider, url: 'https://ae', override: {additional-prefix: '[优] 早安云'}}
-  CM: {<<: *BaseProvider, url: 'https://n', override: {additional-prefix: '[优] cm'}}
-  超悦: {<<: *BaseProvider, url: 'https://2', override: {additional-prefix: '[中] 超悦'}}
+  一毛: {<<: *BaseProvider, url: 'https://y3', override: {additional-prefix: '[优] 一毛'}}
+  早安云: {<<: *BaseProvider, url: 'https://a', override: {additional-prefix: '[优] 早安云'}}
+  CM: {<<: *BaseProvider, url: 'https://nf', override: {additional-prefix: '[优] cm'}}
+  超悦: {<<: *BaseProvider, url: 'https://jg2', override: {additional-prefix: '[中] 超悦'}}
   备用服务商: {<<: *BaseProvider, url: '备用订阅源地址', override: {additional-prefix: '[备] '}}
 
 # ==================== 监听器 ====================
@@ -116,17 +116,21 @@ profile:
 # 流量嗅探
 sniffer:
   enable: true
+  parse-pure-ip: true           # 核心优化：尝试从纯 IP 请求中解析域名
   sniff:
     HTTP:
       ports: [80, 8080-8880]
       override-destination: true
     TLS:
       ports: [443, 8443]
+      override-destination: true # 必须开启：确保按域名规则重新路由
     QUIC:
       ports: [443, 8443]
+      # 注意：部分内核不支持 QUIC 的 override-destination，保持现状即可
   skip-domain:
     - "Mijia Cloud"
     - "+.push.apple.com"
+    - "+.apple.com"              # 建议增加，防止苹果服务因嗅探导致连接中断
 
 # TUN模式配置
 tun:
@@ -258,18 +262,13 @@ rules:
   # 1. 优先放行 LocalSend 端口
   - DST-PORT,53317,DIRECT
 
+  # 2. AI 专项 (ChatGPT 对 IP 和 DNS 极其敏感，必须置顶)
+  - RULE-SET,AI,人工智能
+  - RULE-SET,google,谷歌服务
+
   # 1. 拦截规则 (最优先，广告和追踪必须死在最前面)
   - RULE-SET,reject,REJECT
   - AND,((DST-PORT,443),(NETWORK,UDP)),REJECT
-
-  # 2. AI 专项 (ChatGPT 对 IP 和 DNS 极其敏感，必须置顶)
-  - DOMAIN-SUFFIX,chatgpt.com,人工智能
-  - DOMAIN-SUFFIX,openai.com,人工智能
-  - DOMAIN-SUFFIX,auth0.com,人工智能
-  - DOMAIN-SUFFIX,gemini.google.com,人工智能
-  - DOMAIN-KEYWORD,generativelanguage,人工智能
-  - RULE-SET,AI,人工智能
-  - RULE-SET,google,谷歌服务
 
   # 3. 特定代理 
   - RULE-SET,TikTok,TikTok
@@ -309,28 +308,28 @@ rule-providers:
   AI: 
     type: http
     behavior: domain
-    url: "https://fastly.jsdelivr.net/gh/xiaolin-007/clash@main/rule/AI.txt"
+    url: "https://raw.githubusercontent.com/podao/Clash-jb/refs/heads/main/guizeji/AI.txt"
     path: ./ruleset/xiaolin-007/AI.yaml
     interval: 86400
 
   Netflix:
     type: http
     behavior: domain
-    url: "https://fastly.jsdelivr.net/gh/xiaolin-007/clash@main/rule/Netflix.txt"
+    url: "https://cdn.jsdelivr.net/gh/xiaolin-007/clash@main/rule/Netflix.txt"
     path: ./ruleset/xiaolin-007/Netflix.yaml
     interval: 86400
 
   YouTube:
     type: http
     behavior: domain
-    url: "https://fastly.jsdelivr.net/gh/xiaolin-007/clash@main/rule/YouTube.txt"
+    url: "https://cdn.jsdelivr.net/gh/xiaolin-007/clash@main/rule/YouTube.txt"
     path: ./ruleset/xiaolin-007/YouTube.yaml
     interval: 86400
 
   TikTok:
     type: http
     behavior: domain
-    url: "https://raw.githubusercontent.com/podao/Clash-jb/refs/heads/main/guizeji/TikTok"
+    url: "https://raw.githubusercontent.com/podao/Clash-jb/refs/heads/main/guizeji/TikTok.txt"
     path: ./ruleset/xiaolin-007/TikTok.yaml
     interval: 86400
 
@@ -344,7 +343,7 @@ rule-providers:
   google:
     type: http
     behavior: domain
-    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/google.txt"
+    url: "https://raw.githubusercontent.com/podao/Clash-jb/refs/heads/main/guizeji/Google.txt"
     path: ./ruleset/google.yaml
     interval: 86400
 
