@@ -50,9 +50,9 @@ FilterAL: &FilterAL '^(?!.*(DIRECT|直接连接|群|邀请|返利|循环|官网|
 # 注意：请提供您的机场订阅链接，每个链接一行，并为每个机场命名，末尾的[优][备]为每个节点添加机场名称前缀，可自定义
 proxy-providers:
   # 优质订阅源 - 优质节点集合，使用时请修改
-  一毛: {<<: *BaseProvider, url: 'https://3', override: {additional-prefix: '[优] 一毛'}}
-  早安云: {<<: *BaseProvider, url: 'https://e', override: {additional-prefix: '[优] 早安云'}}
-  CM: {<<: *BaseProvider, url: 'https://f', override: {additional-prefix: '[优] cm'}}
+  一毛: {<<: *BaseProvider, url: 'https://y', override: {additional-prefix: '[优] 一毛'}}
+  早安云: {<<: *BaseProvider, url: 'https://a', override: {additional-prefix: '[优] 早安云'}}
+  CM: {<<: *BaseProvider, url: 'https://n', override: {additional-prefix: '[优] cm'}}
   备用服务商: {<<: *BaseProvider, url: '备用订阅源地址', override: {additional-prefix: '[备] '}}
 
 # ==================== 监听器 ====================
@@ -322,7 +322,7 @@ rule-providers:
   AI: 
     type: http
     behavior: classical
-    url: "https://cdn.jsdelivr.net/gh/xiaolin-007/clash@main/rule/AI.txt"
+    url: "https://raw.githubusercontent.com/podao/Clash-jb/refs/heads/main/guizeji/AI.txt"
     path: ./ruleset/xiaolin-007/AI.yaml
     interval: 86400
 
