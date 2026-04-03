@@ -30,7 +30,7 @@ BaseSmart: &BaseSmart {type: smart, tolerance: 150, interval: 300, lazy: true, u
 
 # 策略组代理列表模板 - 预定义的代理节点优先级排序
 SelectMR: &SelectMR {type: select, proxies: [智能选择, 故障转移, 香港智能, 新加坡智能, 日本智能, 韩国智能, 美国智能, 台湾智能, 欧洲智能, 冷门自选, 直接连接]}
-SelectAI: &SelectAI {type: fallback, proxies: [美国智能, 新加坡智能, 日本智能, 台湾智能, 韩国智能], exclude-filter: "(?i)(香港|🇭🇰|HK|HongKong|HKG|澳门|🇲🇴)"}
+SelectAI: &SelectAI {type: fallback, proxies: [新加坡智能, 日本智能, 台湾智能, 韩国智能], exclude-filter: "(?i)(香港|🇭🇰|HK|HongKong|HKG|澳门|🇲🇴|美国|🇺🇸|US|USA)"}
 SelectYL: &SelectYL {type: smart, tolerance: 150, interval: 300, lazy: true, url: 'http://www.gstatic.com/generate_204', uselightgbm: true, proxies: [香港智能, 新加坡智能, 日本智能, 韩国智能, 台湾智能, 美国智能, 欧洲智能, 冷门自选]}
 SelectTK: &SelectTK {type: smart, tolerance: 150, interval: 300, lazy: true, url: 'http://www.gstatic.com/generate_204', uselightgbm: true, proxies: [新加坡智能, 日本智能, 韩国智能, 台湾智能, 美国智能], exclude-filter: "(?i)(印度|India|🇮🇳)"}
 SelectAV: &SelectAV {type: smart, tolerance: 150, interval: 300, lazy: true, url: 'http://www.gstatic.com/generate_204', uselightgbm: true, proxies: [日本智能, 新加坡智能, 台湾智能, 香港智能]}
@@ -50,8 +50,8 @@ FilterAL: &FilterAL '^(?!.*(DIRECT|直接连接|群|邀请|返利|循环|官网|
 # 注意：请提供您的机场订阅链接，每个链接一行，并为每个机场命名，末尾的[优][备]为每个节点添加机场名称前缀，可自定义
 proxy-providers:
   # 优质订阅源 - 优质节点集合，使用时请修改
-  一毛: {<<: *BaseProvider, url: 'https://y', override: {additional-prefix: '[优] 一毛'}}
-  早安云: {<<: *BaseProvider, url: 'https://a', override: {additional-prefix: '[优] 早安云'}}
+  一毛: {<<: *BaseProvider, url: 'https://y3', override: {additional-prefix: '[优] 一毛'}}
+  早安云: {<<: *BaseProvider, url: 'https://ar', override: {additional-prefix: '[优] 早安云'}}
   CM: {<<: *BaseProvider, url: 'https://n', override: {additional-prefix: '[优] cm'}}
   备用服务商: {<<: *BaseProvider, url: '备用订阅源地址', override: {additional-prefix: '[备] '}}
 
